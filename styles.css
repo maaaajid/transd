@@ -1,0 +1,441 @@
+*, *::after, *::before{
+    box-sizing: border-box;
+}
+
+
+body{
+    font-family: "Alfa Slab One", serif;
+    font-weight: 400;
+    font-style: normal;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    background-color: #09122C;
+    position: relative;
+    display: flex;
+}
+
+.games {
+    min-width: 400px;
+    z-index: 2;
+    position: relative;
+    border: 1dvw solid #5F0F40;
+    border-radius: 2dvw;
+    width: 90dvw;
+    height: 90dvh;
+    top: 5dvh;
+    left: 5dvw;
+    background-color:#070c1b;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.v1 {
+    min-width: 300px;
+    width: 30dvw;
+    height: 20dvh;
+    background-color: #007074;
+    border: 0.5dvw solid #5F0F40;
+    border-radius: 1dvw;
+    font-size: 4dvw;
+}
+
+.tournment {
+    min-width: 300px;
+    width: 30dvw;
+    height: 20dvh;
+    background-color:#007074;
+    border: 0.5dvw solid #5F0F40;
+    border-radius: 1dvw;
+    font-size: 4dvw;
+}
+
+button {
+    font-family: inherit;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.score {
+    width: 100%;
+    height: 250px;
+    /* border: 10px solid white; */
+    display: flex;
+    position: absolute;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+
+
+.board {
+    min-width: 300px;
+    width: 20%;
+    margin: 0;
+    border-radius: 15px;
+    border: 10px solid #09122C;
+    background-color: #5F0F40;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+
+.board1{
+    min-width: 400px;
+    height: 45%;
+    font-size: 4dvw;
+    color: aquamarine;
+    position: relative;
+}
+
+.board1::before,
+.board1::after{
+    content: '';
+    position: absolute;
+    width: 96%;
+    height: 96%;
+    left: 2%;
+    top: 2%;
+    background: conic-gradient(from 0deg at center, #00c3ff, #4d0199, #6300c6, #009dcd);
+    z-index: -2;
+    padding: 10px;
+    border-radius: inherit;
+}
+
+.board1::after{
+    filter: blur(60px);
+}
+
+.board2 {
+    min-width: 400px;
+    height: 45%;
+    font-size: 4dvw;
+    position: relative;
+    color: aquamarine;
+}
+
+.board2::before,
+.board2::after{
+    content: '';
+    position: absolute;
+    width: 96%;
+    height: 96%;
+    left: 2%;
+    top: 2%;
+    background: conic-gradient(from 0deg at center, #00c3ff, #4d0199, #6300c6, #009dcd);
+    z-index: -2;
+    padding: 10px;
+    border-radius: inherit;
+}
+
+.board2::after{
+    filter: blur(60px);
+}
+
+
+/* .player1name {
+    font-size: 7dvw;
+} */
+
+
+
+
+
+
+.vs{
+    position: absolute;
+    font-size: 7dvw;
+    text-shadow: 5px 5px black;
+    margin: 0;
+    z-index: 1;
+    
+    color: rgb(65, 10, 10);
+}
+
+
+.playground{
+    min-width: 400px;
+    position: absolute;
+    justify-content: center;
+    display: block;
+    width: 70%;
+    aspect-ratio: 16/8; 
+    background-color: #5F0F40;
+    top: 250px;
+    left: 15%;
+    right: 15%;
+    border-radius: 20px;
+    
+}
+
+.playground::before,
+.playground::after{
+    content: '';
+    position: absolute;
+    width: 96%;
+    height: 96%;
+    left: 2%;
+    top: 2%;
+    background: conic-gradient(from 0deg at center, #00c3ff, #4d0199, #6300c6, #009dcd);
+    z-index: -2;
+    padding: 10px;
+    border-radius: inherit;
+}
+
+.playground::after{
+    filter: blur(60px);
+}
+
+.padle1{
+    --position: 50;
+    position: absolute;
+    background-color: aquamarine;
+    top: calc(var(--position) * 1%);
+    left: 1%;
+    transform: translateY(-50%);
+    width: 1%;
+    border-radius: 5px;
+    height: 15%;
+}
+
+.padle2{
+    --position: 50;
+    position: absolute;
+    background-color: aquamarine;
+    top: calc(var(--position) * 1%);
+    right: 1%;
+    transform: translateY(-50%);
+    width: 1%;
+    border-radius: 5px;
+    height: 15%;
+}
+
+.ball{
+    --x: 50;
+    --y: 50;
+    height: 4%;
+    aspect-ratio: 1/1;
+    background: red;
+    border-radius: 50%;
+    top: calc(var(--y) * 1%);
+    left: calc(var(--x) * 1%);
+    transform: translate(-50%, -50%);
+    position: absolute;
+    will-change: transform;
+}
+
+
+.frame {
+    width: 50%;
+    height: 20%;
+    position: relative;
+    color: #142d4a;
+    border-radius: 10px;
+    top: calc(50 * 1%);
+    left: calc(50 * 1%);
+    background: #7A73D1;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    /* text-align: center; */
+    
+    
+    
+}
+
+.player1name {
+    margin-left: 1dvw;
+}
+
+.player2name {
+    margin-left: 1dvw;
+}
+
+.player1score {
+    margin-right: 1dvw;
+}
+
+.player2score {
+    margin-right: 1dvw;
+}
+
+
+.startText {
+    text-align: center;
+    color: #09122C;
+    padding-top: 4.5%;
+    font-size: clamp(1rem,  3vw, 4rem);
+}
+
+
+.frame2 {
+    min-width: 400px;
+    z-index: 2;
+    position: relative;
+    border: 1dvw solid #5F0F40;
+    border-radius: 2dvw;
+    width: 90dvw;
+    height: 90dvh;
+    top: 5dvh;
+    left: 5dvw;
+    background-color:#070c1b;
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.resetMatch {
+    min-width: 300px;
+    width: 30dvw;
+    height: 15dvh;
+    background-color: #007074;
+    border: 0.5dvw solid #5F0F40;
+    border-radius: 1dvw;
+    font-size: clamp(2rem,  4vw, 6rem);
+}
+
+.quit {
+    min-width: 300px;
+    width: 30dvw;
+    height: 15dvh;
+    background-color:#007074;
+    border: 0.5dvw solid #5F0F40;
+    border-radius: 1dvw;
+    font-size: clamp(2rem,  4vw, 6rem);
+}
+
+.winnerText {
+    text-align: center;
+    color: #007074;
+    padding-top: 4.5%;
+    font-size: clamp(3rem,  5vw, 8rem);
+}
+
+
+
+
+@media (max-width: 850px) {
+    .score {
+      flex-direction: column;
+      justify-content: space-around;
+    }
+    .board {
+        width: 70%;
+    }
+    .board1 {
+        height: 30%;
+    }
+    .board2 {
+        height: 30%;
+        text-align: right;
+    }
+    .playground {
+        width: 90%;
+        right: 5%;
+        left: 5%;
+    }
+    .games {
+        flex-direction: column;
+    }
+    .v1 {
+        width: 90%;
+        left : 5%;
+    }
+    .tournment {
+        width: 90%;
+        left : 5%;
+    }
+    .frame2 {
+        width: 90%;
+    }
+    .resetMatch {
+        width: 90%;
+        left: 5%
+    }
+    .quit {
+        width: 90%;
+        left: 5%
+    }
+  }
+
+  @media (max-width: 450px)
+{
+    .games {
+        left: 0;
+    }
+    .playground {
+        left: 0;
+        right: 0;
+    }
+    .board {
+        width: 100%;
+    }
+    .frame2 {
+        width: 100%;
+        left: 0;
+    }
+
+}
+
+
+
+
+
+
+
+
+

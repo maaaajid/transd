@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./main.js" type="module"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+    <title>THE PONG</title>
+</head>
+<body>
+    <div class="games" id="games">
+        <button class="v1" id="v1">1vs1</button>
+        <button class="tournment" id="tournment">tournment</button>
+    </div>
+    <div class="score">
+        <div class="board board1" id="board">
+            <div class="player1name" id="player1name">Player 1</div>
+            <div class="player1score" id="player1score">0</div>
+        </div>
+        <h1 class="vs">vs</h1>
+        <div class="board board2" id="board">
+            <div class="player2name" id="player2name">Player 2</div>
+            <div class="player2score" id="player2score">0</div>
+        </div>
+    </div>
+    <div id="playground" class="playground">
+        <div class="padle1" id="padle1"></div>
+        <div class="padle2" id="padle2"></div>
+        <div class="ball" id="ball"></div>
+        <div class="frame" id="frame">
+            <h1 class="startText" id="startText"> press space to start</h1>
+        </div>
+    </div>
+    <div class="frame2" id="frame2">
+        <h1 class="winnerText" id="winnerText"></h1>
+        <button class="resetMatch" id="resetMatch">REMATCH</button>
+        <button class="quit" id="quit">QUIT</button>
+    </div>
+</body>
+</html>
