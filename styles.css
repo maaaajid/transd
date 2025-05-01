@@ -137,7 +137,7 @@ button {
 .board1{
     min-width: 400px;
     height: 45%;
-    font-size: 4dvw;
+    font-size: 3dvw;
     color: aquamarine;
     position: relative;
 }
@@ -163,7 +163,7 @@ button {
 .board2 {
     min-width: 400px;
     height: 45%;
-    font-size: 4dvw;
+    font-size: 3dvw;
     position: relative;
     color: aquamarine;
 }
