@@ -1,4 +1,4 @@
-import { startGame , gameRunning , players} from "./script.js";
+import { startGame , gameRunning , players, } from "./script.js";
 
 const gamesboard = document.getElementById('games');
 const button1v1 = document.getElementById('v1');
@@ -6,50 +6,223 @@ const winnerBoard  = document.getElementById('frame2');
 const winnerText = document.getElementById('winnerText');
 const resetMatch = document.getElementById('resetMatch');
 const quitGame = document.getElementById('quit');
+const tournment = document.getElementById('tournment');
+const username = document.getElementById('userName');
+const inputName = document.getElementById('inputName');
+const submit = document.getElementById('submit');
+const player1Name = document.getElementById('player1name');
+const player2Name = document.getElementById('player2name');
+const error =  document.getElementById('error');
+const tournmentNames = document.getElementById('tournmentNames');
+const error2 = document.getElementById('error2');
+const inputName2 = document.getElementById('inputName2');
+const inputName3 = document.getElementById('inputName3');
+const inputName4 = document.getElementById('inputName4');
+const submitUsers = document.getElementById('submitUsers');
+
+let p1 = player1Name.innerText;
+let p2 = '';
+let p3 = '';
+let p4 = '';
+let winners = [];
+
 winnerBoard.style.display = 'none';
-window.addEventListener('DOMContentLoaded', () => {
-    resetMatch.addEventListener('click', game1v1);
-    button1v1.addEventListener('click', game1v1);
-});
 quitGame.addEventListener('click', quit);
-// resetMatch.addEventListener('click', game1v1);
-// button1v1.addEventListener('click', game1v1);
+resetMatch.addEventListener('click', game1v1);
+
+gameMenu();
+
+function    gameMenu()
+{
+    gamesboard.style.display = 'flex';
+    button1v1.addEventListener('click', game1v1);
+    tournment.addEventListener('click', startTournment)
+    
+}
+
+
 
 function    quit()
 {
     winnerBoard.style.display = 'none';
     gamesboard.style.display = 'flex';
     button1v1.addEventListener('click', game1v1);
-
+    
 }
 
 
-function    game1v1()
+async function    game1v1()
 {
     players.player1 = 0;
     players.player2 = 0;
-    let winner = 0;
+    if (player2Name.innerText === '' || player2Name.innerText === null)
+        getUserName(player2Name);
+    console.log('willli' + player2Name);
     winnerBoard.style.display = 'none';
     gamesboard.style.display = 'none';
-    document.addEventListener('keyup', (event) => {
-        if (!gameRunning)
-        {
-            let winner = startGame(event);
-        }
-        console.log(winner);
-        
-        if (players.player1 === 3)
-            {
-                winnerBoard.style.display = 'flex';
-                winnerText.innerText = "player 1 win";
-            }
-            else if (players.player2 === 3)
-        {
+    document.addEventListener('keyup',async (event) => {
+        if (!gameRunning && player2Name.innerText)
+            await startGame(event);
+        if (players.player1 === 3){
             winnerBoard.style.display = 'flex';
-            winnerText.innerText = "player 2 win";
+            winnerText.innerText = "player 1 win";
         }
-
-        
+        else if (players.player2 === 3) {
+            winnerBoard.style.display = 'flex';
+            winnerText.innerText = player2Name.innerText +  " win";
+        }    
 })}
+
+function    getUserName(playername)
+{
+    username.style.display = 'flex';
+    submit.addEventListener('click',  (e) => {
+        if (inputName.value === ''){
+            e.preventDefault()
+            error.innerText = "Enter username";
+            error.style.display = "block";
+        }
+        else if (inputName.value.length > 10){
+            e.preventDefault();
+            error.innerText = "Too long username";
+            error.style.display = "flex";
+        }else{
+            playername.innerText = inputName.value;
+            error.style.display = 'none';
+            username.style.display = 'none';
+        }
+})}
+    
+async function    startTournment()
+{
+    players.player1 = 0;
+    players.player2 = 0; 
+    gamesboard.style.display = 'none';
+    if (p2 === ''  || p3 === '' || p4 === '')
+        await getParticepantNames();
+    player1Name.innerText = p1;
+    player2Name.innerText = p2;
+    document.addEventListener('keyup',  firstRound);
+    
+    
+}
+
+async function firstRound(event) {
+    let res;
+    if (!gameRunning && p2) {
+            res = await startGame(event);
+            console.log(res + 'lowel');
+        if (res === 3)
+            winners[0] = p1;
+        else if (res === 2)
+            winners[0] = p2;
+        if (winners[0]){
+            players.player1 = 0;
+            players.player2 = 0;
+            player1Name.innerText = p3;
+            player2Name.innerText = p4;
+        }
+        if (winners[0])       
+            document.removeEventListener('keyup', firstRound); 
+            document.addEventListener('keyup', secondRound);
+    }
+}
+
+async function secondRound(event) {
+    let res;
+    if (!gameRunning && winners[0]){
+        console.log('lets gooooo');
+        res = await startGame(event);
+        console.log(res + 'tani');
+        if (res === 3)
+            winners[1] = p3;
+        else if (res === 2)
+            winners[1] = p4;
+        if (winners[0] && winners[1]){
+            players.player1 = 0;
+            players.player2 = 0;
+            player1Name.innerText = winners[0];
+            player2Name.innerText = winners[1];
+        }
+    }
+    if (winners[0] && winners[1])
+        document.removeEventListener('keyup', secondRound);
+        document.addEventListener('keyup', finnalRound);
+} 
+
+async function finnalRound(event) {
+    let res;
+    if (!gameRunning && winners[1]){
+        console.log('last');
+        res = await startGame(event);
+        console.log(res + 'hehe');
+        if (res === 3)
+            winners[2]= winners[0];
+        else if (res === 2)
+            winners[2] = winners[1];
+        console.log(winners[2]);
+    }
+    if (winners[2])
+        document.removeEventListener('keyup', finnalRound);  
+}
+
+
+
+
+
+function getParticepantNames() {
+    return new Promise((resolve) => {
+      tournmentNames.style.display = 'flex';
+  
+      function handleSubmit(e) {
+        e.preventDefault();
+        if (inputName2.value === '' ||
+          inputName3.value === '' ||
+          inputName4.value === ''
+        ) {
+          error2.innerText = "All participants should have a username";
+          error2.style.display = "block";
+        } else if (inputName2.value.length > 10 ||
+          inputName3.value.length > 10 ||
+          inputName4.value.length > 10
+        ) {
+          error2.innerText = "Too long username";
+          error2.style.display = "block";
+        } else {
+          p2 = inputName2.value;
+          p3 = inputName3.value;
+          p4 = inputName4.value;
+  
+          error2.style.display = 'none';
+          tournmentNames.style.display = 'none';
+          submitUsers.removeEventListener('click', handleSubmit);
+          resolve();
+        }
+      }
+      submitUsers.addEventListener('click', handleSubmit);
+    });
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

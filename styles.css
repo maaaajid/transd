@@ -1,16 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 *, *::after, *::before{
     box-sizing: border-box;
 }
 
 
 body{
-    font-family: "Alfa Slab One", serif;
+    font-family: 'Press Start 2P', cursive;
     font-weight: 400;
     font-style: normal;
     overflow: hidden;
     margin: 0;
     padding: 0;
-    background-color: #09122C;
+    background-color: black;
     position: relative;
     display: flex;
 }
@@ -25,8 +27,8 @@ body{
     height: 90dvh;
     top: 5dvh;
     left: 5dvw;
-    background-color:#070c1b;
-    display: flex;
+    background-color:black;
+    display: none;
     justify-content: space-around;
     align-items: center;
 }
@@ -38,7 +40,8 @@ body{
     background-color: #007074;
     border: 0.5dvw solid #5F0F40;
     border-radius: 1dvw;
-    font-size: 4dvw;
+    font-size: 3dvw;
+    color: white;
 }
 
 .tournment {
@@ -48,63 +51,13 @@ body{
     background-color:#007074;
     border: 0.5dvw solid #5F0F40;
     border-radius: 1dvw;
-    font-size: 4dvw;
+    font-size: 3dvw;
+    color: white;
 }
 
 button {
     font-family: inherit;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 .score {
@@ -137,8 +90,8 @@ button {
 .board1{
     min-width: 400px;
     height: 45%;
-    font-size: 3dvw;
-    color: aquamarine;
+    font-size: 1.5dvw;
+    color: white;
     position: relative;
 }
 
@@ -163,9 +116,9 @@ button {
 .board2 {
     min-width: 400px;
     height: 45%;
-    font-size: 3dvw;
+    font-size: 1.5dvw;
     position: relative;
-    color: aquamarine;
+    color: white;
 }
 
 .board2::before,
@@ -237,7 +190,7 @@ button {
 }
 
 .playground::after{
-    filter: blur(60px);
+    filter: blur(40px);
 }
 
 .padle1{
@@ -283,11 +236,10 @@ button {
     width: 50%;
     height: 20%;
     position: relative;
-    color: #142d4a;
     border-radius: 10px;
     top: calc(50 * 1%);
     left: calc(50 * 1%);
-    background: #7A73D1;
+    background: #007074;
     transform: translate(-50%, -50%);
     z-index: 0;
     /* text-align: center; */
@@ -315,9 +267,9 @@ button {
 
 .startText {
     text-align: center;
-    color: #09122C;
+    color: white;
     padding-top: 4.5%;
-    font-size: clamp(1rem,  3vw, 4rem);
+    font-size: clamp(1rem,  2vw, 3rem);
 }
 
 
@@ -331,7 +283,7 @@ button {
     height: 90dvh;
     top: 5dvh;
     left: 5dvw;
-    background-color:#070c1b;
+    background-color:black;
     display: none;
     flex-direction: column;
     justify-content: space-around;
@@ -340,30 +292,185 @@ button {
 
 .resetMatch {
     min-width: 300px;
+    color: white;
     width: 30dvw;
     height: 15dvh;
     background-color: #007074;
     border: 0.5dvw solid #5F0F40;
     border-radius: 1dvw;
-    font-size: clamp(2rem,  4vw, 6rem);
+    font-size: clamp(1rem,  2vw, 3rem);
 }
 
 .quit {
     min-width: 300px;
+    color: white;
     width: 30dvw;
     height: 15dvh;
     background-color:#007074;
     border: 0.5dvw solid #5F0F40;
     border-radius: 1dvw;
-    font-size: clamp(2rem,  4vw, 6rem);
+    font-size: clamp(1rem,  2vw, 3rem);
 }
 
 .winnerText {
     text-align: center;
-    color: #007074;
+    color: white;
     padding-top: 4.5%;
     font-size: clamp(3rem,  5vw, 8rem);
 }
+
+.userName {
+    min-width: 200px;
+    z-index: 2;
+    position: relative;
+    border: 0.5dvw solid #007074;
+    border-radius: 1dvw;
+    width: 30dvw;
+    height: 45dvh;
+    top: 36dvh;
+    left: 35dvw;
+    background-color: black;
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.playerNumber {
+    text-align: center;
+    color: white;
+    font-size: clamp(1rem,  2vw, 3rem);
+}
+
+.error{
+    align-self: center;
+    color: red;
+    display: none;
+    font-size: clamp(0.2rem,  0.8vw, 1rem);
+}
+
+.inputName{
+    min-width: 200px;
+    width: 20dvw;
+    height: 7dvh;
+    border: 0.5dvw solid #5F0F40;
+    border-radius: 0.3dvw;
+    /* font-size: clamp(0.1rem,  0.5vw, 1rem); */
+    font-size: 1.5rem;
+    left: 5px;  
+}
+
+input {
+    font-family: 'Press Start 2P', cursive;
+}
+
+:placeholder-shown {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+}
+
+.submit{
+    min-width: 100px;
+    width: 15dvw;
+    height: 6dvh;
+    background-color:#007074;
+    border: 0.2dvw solid #5F0F40;
+    border-radius: 1dvw;
+    font-size: clamp(0.3rem,  1vw, 1.5rem);
+}
+
+.tournmentNames {
+    min-width: 300px;
+    z-index: 2;
+    position: relative;
+    border: 0.5dvw solid #007074;
+    border-radius: 1dvw;
+    width: 30dvw;
+    height: 70dvh;
+    top: 15dvh;
+    left: 35dvw;
+    background-color: black;
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.participantUsers {
+    text-align: center;
+    color: white;
+    font-size: clamp(1rem,  2vw, 3rem);
+}
+
+.error2{
+    align-self: center;
+    color: red;
+    display: none;
+    font-size: clamp(0.2rem,  0.4vw, 0.8rem);
+}
+
+.inputName2{
+    min-width: 200px;
+    width: 20dvw;
+    height: 7dvh;
+    border: 0.5dvw solid #5F0F40;
+    border-radius: 0.3dvw;
+    /* font-size: clamp(0.1rem,  0.5vw, 1rem); */
+    font-size: 0.8rem;
+    left: 5px;  
+}
+
+.inputName3{
+    min-width: 200px;
+    width: 20dvw;
+    height: 7dvh;
+    border: 0.5dvw solid #5F0F40;
+    border-radius: 0.3dvw;
+    /* font-size: clamp(0.1rem,  0.5vw, 1rem); */
+    font-size: 0.8rem;
+    left: 5px;  
+}
+
+.inputName4{
+    min-width: 200px;
+    width: 20dvw;
+    height: 7dvh;
+    border: 0.5dvw solid #5F0F40;
+    border-radius: 0.3dvw;
+    /* font-size: clamp(0.1rem,  0.5vw, 1rem); */
+    font-size: 0.8rem;
+    left: 5px;  
+}
+
+.submitUsers{
+    min-width: 100px;
+    width: 15dvw;
+    height: 6dvh;
+    background-color:#007074;
+    border: 0.2dvw solid #5F0F40;
+    border-radius: 1dvw;
+    font-size: clamp(0.3rem,  1vw, 1.5rem);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -410,9 +517,12 @@ button {
         width: 90%;
         left: 5%
     }
-  }
+}
 
-  @media (max-width: 450px)
+
+
+
+@media (max-width: 450px)
 {
     .games {
         left: 0;

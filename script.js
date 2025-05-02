@@ -21,8 +21,6 @@ let ballX = (playGroundrect.right - playGroundrect.left) / 2;
 let ballY = (playGroundrect.bottom - playGroundrect.top) / 2;
 let ballSpeedX = 14;
 let ballSpeedY = 8;
-// export let players.player1 = 0;
-// export let players.player2 = 0;
 export const players = {
     player1 :  0,
     player2 :  0
@@ -35,33 +33,33 @@ document.addEventListener('keydown', handleKeys);
 document.addEventListener('keyup', handleKeyUp);
 
 export  function startGame(e) {
-
-    if (players.player1 === 3) {
-        return 1;
-    }
-    if (players.player2 === 3){
-        return 2;
-    }
-    if (e.code === 'Space' && players.player1 < 11 && players.player2 < 11){
-        document.removeEventListener('keyup', startGame);
-        gameRunning = true;
-        starttext.style.display = 'none';
-        gameLoop();
-    }
-    else 
-        return;
+    return new Promise((resolve) => {
+    if (e.code === 'Space' && players.player1 < 3 
+        && players.player2 < 3){
+            document.removeEventListener('keyup', startGame);
+            gameRunning = true;
+            starttext.style.display = 'none';
+            gameLoop(resolve);
+        }
+    })
 }
 
 
 
-function    gameLoop() {
+function    gameLoop(resolve) {
+    if (players.player1 === 3) {
+        resolve(3);
+        gameRunning = false;
+    } else if (players.player2 === 3){
+        gameRunning = false;
+        resolve(2);
+    }
     if (gameRunning) {
         upDatePaddle1();
         upDatePaddle2();
         upDateBall();
         upDatePlayresScore();
-
-        setTimeout(gameLoop, 30);
+        setTimeout(() => gameLoop(resolve), 30);
     }
 }
 
@@ -182,12 +180,12 @@ function upDateBall() {
         ball.style.top = ballY + 'px';
         ball.style.left = ballX + 'px';
         
-    }
+}
     
-    function    upDatePlayresScore() {
-        p1Score.innerText = players.player1;
-        p2Score.innerText = players.player2;
-    }
+function    upDatePlayresScore() {
+    p1Score.innerText = players.player1;
+    p2Score.innerText = players.player2;
+}
     
     
 
@@ -204,14 +202,5 @@ function    resetGame() {
     ballSpeedY = 8;
     ball.style.display = 'block';
     starttext.style.display = 'block';
-    
-    if (players.player1 < 3 && players.player2 < 3)
-    {
-        document.addEventListener('keyup', startGame);
-
-    }
-    else
-    {
-        startGame(null);
-    }
+    document.addEventListener('keyup', startGame);
 }

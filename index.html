@@ -6,7 +6,7 @@
     <script src="./main.js" type="module"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles.css">
     <title>THE PONG</title>
 </head>
@@ -22,7 +22,7 @@
         </div>
         <h1 class="vs">vs</h1>
         <div class="board board2" id="board">
-            <div class="player2name" id="player2name">Player 2</div>
+            <div class="player2name" id="player2name"></div>
             <div class="player2score" id="player2score">0</div>
         </div>
     </div>
@@ -38,6 +38,20 @@
         <h1 class="winnerText" id="winnerText"></h1>
         <button class="resetMatch" id="resetMatch">REMATCH</button>
         <button class="quit" id="quit">QUIT</button>
+    </div>
+    <div class="userName" id="userName">
+        <h1 class="playerNumber" id="playerNumber">Player 2 name</h1>
+        <h3 class="error" id="error"></h3>
+        <input type="text" placeholder="Enter your username" class="inputName" id="inputName">
+        <button class="submit" id="submit">submit</button>
+    </div>
+    <div class="tournmentNames" id="tournmentNames">
+        <h1 class="participantUsers " id="participantUsers">Participant usernames</h1>
+        <h3 class="error2" id="error2"></h3>
+        <input type="text" placeholder="participant 2 username" class="inputName2" id="inputName2">
+        <input type="text" placeholder="participant 3 username" class="inputName3" id="inputName3">
+        <input type="text" placeholder="participant 4 username" class="inputName4" id="inputName4">
+        <button class="submitUsers" id="submitUsers">submit</button>
     </div>
 </body>
 </html>
