@@ -19,6 +19,7 @@ const inputName2 = document.getElementById('inputName2');
 const inputName3 = document.getElementById('inputName3');
 const inputName4 = document.getElementById('inputName4');
 const submitUsers = document.getElementById('submitUsers');
+const reTournment = document.getElementById('restartTournment');
 
 let p1 = player1Name.innerText;
 let p2 = '';
@@ -29,6 +30,7 @@ let winners = [];
 winnerBoard.style.display = 'none';
 quitGame.addEventListener('click', quit);
 resetMatch.addEventListener('click', game1v1);
+reTournment.addEventListener('click', startTournment);
 
 gameMenu();
 
@@ -44,6 +46,8 @@ function    gameMenu()
 
 function    quit()
 {
+    player2Name.innerText = '';
+    p2 = '', p3 = '', p4 = '', winners[0] = '', winners[1] = '', winners[2] = '';
     winnerBoard.style.display = 'none';
     gamesboard.style.display = 'flex';
     button1v1.addEventListener('click', game1v1);
@@ -53,24 +57,26 @@ function    quit()
 
 async function    game1v1()
 {
+    let res = 0;
     players.player1 = 0;
     players.player2 = 0;
     if (player2Name.innerText === '' || player2Name.innerText === null)
         getUserName(player2Name);
-    console.log('willli' + player2Name);
     winnerBoard.style.display = 'none';
     gamesboard.style.display = 'none';
     document.addEventListener('keyup',async (event) => {
         if (!gameRunning && player2Name.innerText)
-            await startGame(event);
-        if (players.player1 === 3){
+            res = await startGame(event);
+        if (res === 3)
+            winnerText.innerText = player1Name.innerText + " win";
+        else if (res === 2) 
+            winnerText.innerText = player2Name.innerText + " win";
+        if (res === 2 || res === 3){
+            res = 0;
+            reTournment.style.display = 'none';
+            resetMatch.style.display = 'block';
             winnerBoard.style.display = 'flex';
-            winnerText.innerText = "player 1 win";
-        }
-        else if (players.player2 === 3) {
-            winnerBoard.style.display = 'flex';
-            winnerText.innerText = player2Name.innerText +  " win";
-        }    
+        } 
 })}
 
 function    getUserName(playername)
@@ -90,6 +96,7 @@ function    getUserName(playername)
             playername.innerText = inputName.value;
             error.style.display = 'none';
             username.style.display = 'none';
+            inputName.value = '';
         }
 })}
     
@@ -97,7 +104,9 @@ async function    startTournment()
 {
     players.player1 = 0;
     players.player2 = 0; 
+    winners[0] = '', winners[1] = '', winners[2] = '';
     gamesboard.style.display = 'none';
+    winnerBoard.style.display = 'none';
     if (p2 === ''  || p3 === '' || p4 === '')
         await getParticepantNames();
     player1Name.innerText = p1;
@@ -111,7 +120,6 @@ async function firstRound(event) {
     let res;
     if (!gameRunning && p2) {
             res = await startGame(event);
-            console.log(res + 'lowel');
         if (res === 3)
             winners[0] = p1;
         else if (res === 2)
@@ -122,18 +130,18 @@ async function firstRound(event) {
             player1Name.innerText = p3;
             player2Name.innerText = p4;
         }
-        if (winners[0])       
-            document.removeEventListener('keyup', firstRound); 
+        if (winners[0]){
+            res = 0;
             document.addEventListener('keyup', secondRound);
+            document.removeEventListener('keyup', firstRound); 
+        }     
     }
 }
 
 async function secondRound(event) {
     let res;
     if (!gameRunning && winners[0]){
-        console.log('lets gooooo');
         res = await startGame(event);
-        console.log(res + 'tani');
         if (res === 3)
             winners[1] = p3;
         else if (res === 2)
@@ -145,26 +153,30 @@ async function secondRound(event) {
             player2Name.innerText = winners[1];
         }
     }
-    if (winners[0] && winners[1])
+    if (winners[0] && winners[1]){
         document.removeEventListener('keyup', secondRound);
         document.addEventListener('keyup', finnalRound);
+    }
 } 
 
 async function finnalRound(event) {
     let res;
     if (!gameRunning && winners[1]){
-        console.log('last');
         res = await startGame(event);
-        console.log(res + 'hehe');
         if (res === 3)
             winners[2]= winners[0];
         else if (res === 2)
             winners[2] = winners[1];
-        console.log(winners[2]);
     }
     if (winners[2])
-        document.removeEventListener('keyup', finnalRound);  
-}
+    {
+        res = 0;
+        document.removeEventListener('keyup', finnalRound); 
+        winnerText.innerText = winners[2] +  " win";
+        resetMatch.style.display = 'none';
+        reTournment.style.display = 'block';
+        winnerBoard.style.display = 'flex';
+}}
 
 
 
@@ -196,33 +208,11 @@ function getParticepantNames() {
           error2.style.display = 'none';
           tournmentNames.style.display = 'none';
           submitUsers.removeEventListener('click', handleSubmit);
+          inputName2.value = '';
+          inputName3.value = '';
+          inputName4.value = '';
           resolve();
         }
       }
       submitUsers.addEventListener('click', handleSubmit);
-    });
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+})}

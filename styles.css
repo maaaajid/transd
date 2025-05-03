@@ -77,7 +77,7 @@ button {
     width: 20%;
     margin: 0;
     border-radius: 15px;
-    border: 10px solid #09122C;
+    /* border: 10px solid #09122C; */
     background-color: #5F0F40;
     display: flex;
     justify-content: space-between;
@@ -99,11 +99,11 @@ button {
 .board1::after{
     content: '';
     position: absolute;
-    width: 96%;
-    height: 96%;
-    left: 2%;
-    top: 2%;
-    background: conic-gradient(from 0deg at center, #00c3ff, #4d0199, #6300c6, #009dcd);
+    width: 100.6%;
+    height: 101%;
+    left: -0.3%;
+    top: -0.5%;
+    background: conic-gradient(from 0deg at center, #be1099, #4d0199, #6300c6, #be1099);
     z-index: -2;
     padding: 10px;
     border-radius: inherit;
@@ -125,14 +125,15 @@ button {
 .board2::after{
     content: '';
     position: absolute;
-    width: 96%;
-    height: 96%;
-    left: 2%;
-    top: 2%;
-    background: conic-gradient(from 0deg at center, #00c3ff, #4d0199, #6300c6, #009dcd);
+    width: 100.6%;
+    height: 101%;
+    left: -0.3%;
+    top: -0.5%;
+    background: conic-gradient(from 0deg at center, #be1099, #4d0199, #6300c6, #be1099);
     z-index: -2;
     padding: 10px;
     border-radius: inherit;
+
 }
 
 .board2::after{
@@ -142,22 +143,27 @@ button {
 
 /* .player1name {
     font-size: 7dvw;
-} */
+    } */
+    
 
-
-
-
+    
+    
 
 
 .vs{
     position: absolute;
     font-size: 7dvw;
-    text-shadow: 5px 5px black;
     margin: 0;
     z-index: 1;
-    
-    color: rgb(65, 10, 10);
+    text-align: center;
+    background: linear-gradient(to right, #be1099, #4d0199, #6300c6, #be1099);
+    background-size: 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate 5.5s linear infinite;
 }
+
 
 
 .playground{
@@ -179,16 +185,23 @@ button {
 .playground::after{
     content: '';
     position: absolute;
-    width: 96%;
-    height: 96%;
-    left: 2%;
-    top: 2%;
-    background: conic-gradient(from 0deg at center, #00c3ff, #4d0199, #6300c6, #009dcd);
+    width: 100.6%;
+    height: 101%;
+    left: -0.3%;
+    top: -0.5%;
+    background: conic-gradient(from 0deg at center, #be1099, #4d0199, #6300c6, #be1099);
     z-index: -2;
     padding: 10px;
     border-radius: inherit;
+    /* animation: animate 2.5s linear infinite; */
 }
 
+@keyframes animate {
+    to {
+        background-position: 200%;
+    } 
+}
+    
 .playground::after{
     filter: blur(40px);
 }
@@ -291,6 +304,19 @@ button {
 }
 
 .resetMatch {
+    display: none;
+    min-width: 300px;
+    color: white;
+    width: 30dvw;
+    height: 15dvh;
+    background-color: #007074;
+    border: 0.5dvw solid #5F0F40;
+    border-radius: 1dvw;
+    font-size: clamp(1rem,  2vw, 3rem);
+}
+
+.restartTournment {
+    display: none;
     min-width: 300px;
     color: white;
     width: 30dvw;

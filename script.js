@@ -19,15 +19,15 @@ let paddle2Speed = 0;
 let paddle2YPos = playGroundrect.height / 2;
 let ballX = (playGroundrect.right - playGroundrect.left) / 2;
 let ballY = (playGroundrect.bottom - playGroundrect.top) / 2;
-let ballSpeedX = 14;
-let ballSpeedY = 8;
+let ballSpeedX = 34;
+let ballSpeedY = 18;
 export const players = {
     player1 :  0,
     player2 :  0
 };
 
 const acceleration = 1;
-const maxSpeed = 15;
+const maxSpeed = 25;
 
 document.addEventListener('keydown', handleKeys);
 document.addEventListener('keyup', handleKeyUp);
@@ -48,10 +48,14 @@ export  function startGame(e) {
 
 function    gameLoop(resolve) {
     if (players.player1 === 3) {
-        resolve(3);
         gameRunning = false;
+        p1Score.innerText = '0';
+        p2Score.innerText = '0';
+        resolve(3);
     } else if (players.player2 === 3){
         gameRunning = false;
+        p1Score.innerText = '0';
+        p2Score.innerText = '0';
         resolve(2);
     }
     if (gameRunning) {
@@ -59,7 +63,7 @@ function    gameLoop(resolve) {
         upDatePaddle2();
         upDateBall();
         upDatePlayresScore();
-        setTimeout(() => gameLoop(resolve), 30);
+        setTimeout(() => gameLoop(resolve), 16);
     }
 }
 
