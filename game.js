@@ -1,3 +1,5 @@
+import { tournBoard } from "./tournment.js";
+
 const starttext = document.getElementById("frame");
 const restartText = document.getElementById('restartText');
 const playGround = document.getElementById('playground');
@@ -12,6 +14,14 @@ const p1Score = document.getElementById('player1score');
 const p2Score = document.getElementById('player2score');
 
 export let gameRunning = false;
+export const players = {
+    player1 :  0,
+    player2 :  0
+};
+export const games = {
+    gametype : ''
+};
+
 let keyPressed = {};
 let paddle1Speed = 0;
 let paddle1YPos = playGroundrect.height / 2;
@@ -19,12 +29,8 @@ let paddle2Speed = 0;
 let paddle2YPos = playGroundrect.height / 2;
 let ballX = (playGroundrect.right - playGroundrect.left) / 2;
 let ballY = (playGroundrect.bottom - playGroundrect.top) / 2;
-let ballSpeedX = 34;
-let ballSpeedY = 18;
-export const players = {
-    player1 :  0,
-    player2 :  0
-};
+let ballSpeedX = 16;
+let ballSpeedY = 8;
 
 const acceleration = 1;
 const maxSpeed = 25;
@@ -34,26 +40,41 @@ document.addEventListener('keyup', handleKeyUp);
 
 export  function startGame(e) {
     return new Promise((resolve) => {
-    if (e.code === 'Space' && players.player1 < 3 
-        && players.player2 < 3){
-            document.removeEventListener('keyup', startGame);
-            gameRunning = true;
-            starttext.style.display = 'none';
-            gameLoop(resolve);
-        }
-    })
-}
+        
+    if (players.player1 === 0 && players.player2 === 0 && games.gametype === 'tournment')
+        tournBoard.style.display = 'flex';
+        if (e.code === 'Space' && players.player1 < 3 
+            && players.player2 < 3){
+                tournBoard.style.display = 'none';
+                document.removeEventListener('keyup', startGame);
+                gameRunning = true;
+                starttext.style.display = 'none';
+                
+                if (games.gametype === 'tournment')
+                    gameLoopTournment(resolve);
+                else if (games.gametype == '1v1')
+                    gameLoop1v1(resolve);
+            }
+        })
+    }
+    
+    
 
-
-
-function    gameLoop(resolve) {
-    if (players.player1 === 3) {
+function    gameLoopTournment(resolve) {
+    
+        if (players.player1 === 3) {
+        tournBoard.style.display = 'flex';
         gameRunning = false;
+        players.player1 = 0;
+        players.player2 = 0;
         p1Score.innerText = '0';
         p2Score.innerText = '0';
         resolve(3);
     } else if (players.player2 === 3){
+        tournBoard.style.display = 'flex';
         gameRunning = false;
+        players.player1 = 0;
+        players.player2 = 0;
         p1Score.innerText = '0';
         p2Score.innerText = '0';
         resolve(2);
@@ -63,7 +84,33 @@ function    gameLoop(resolve) {
         upDatePaddle2();
         upDateBall();
         upDatePlayresScore();
-        setTimeout(() => gameLoop(resolve), 16);
+        setTimeout(() => gameLoopTournment(resolve), 16);
+    }
+}
+
+function    gameLoop1v1(resolve) {
+    
+    if (players.player1 === 3) {
+        gameRunning = false;
+        players.player1 = 0;
+        players.player2 = 0;
+        p1Score.innerText = '0';
+        p2Score.innerText = '0';
+        resolve(3);
+    } else if (players.player2 === 3){
+        gameRunning = false;
+        players.player1 = 0;
+        players.player2 = 0;
+        p1Score.innerText = '0';
+        p2Score.innerText = '0';
+        resolve(2);
+    }
+    if (gameRunning) {
+        upDatePaddle1();
+        upDatePaddle2();
+        upDateBall();
+        upDatePlayresScore();
+        setTimeout(() => gameLoop1v1(resolve), 16);
     }
 }
 
@@ -206,5 +253,6 @@ function    resetGame() {
     ballSpeedY = 8;
     ball.style.display = 'block';
     starttext.style.display = 'block';
-    document.addEventListener('keyup', startGame);
+    if (players.player1 < 3 && players.player2 < 3)
+        document.addEventListener('keyup', startGame);
 }

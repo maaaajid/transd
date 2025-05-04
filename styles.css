@@ -73,7 +73,7 @@ button {
 
 
 .board {
-    min-width: 300px;
+    min-width: 250px;
     width: 20%;
     margin: 0;
     border-radius: 15px;
@@ -101,7 +101,7 @@ button {
     position: absolute;
     width: 100.6%;
     height: 101%;
-    left: -0.3%;
+    left: -0.25%;
     top: -0.5%;
     background: conic-gradient(from 0deg at center, #be1099, #4d0199, #6300c6, #be1099);
     z-index: -2;
@@ -127,7 +127,7 @@ button {
     position: absolute;
     width: 100.6%;
     height: 101%;
-    left: -0.3%;
+    left: -0.25%;
     top: -0.5%;
     background: conic-gradient(from 0deg at center, #be1099, #4d0199, #6300c6, #be1099);
     z-index: -2;
@@ -139,20 +139,12 @@ button {
 .board2::after{
     filter: blur(60px);
 }
-
-
-/* .player1name {
-    font-size: 7dvw;
-    } */
-    
-
-    
     
 
 
 .vs{
     position: absolute;
-    font-size: 7dvw;
+    font-size: clamp(1rem,  2.5vw, 5rem);
     margin: 0;
     z-index: 1;
     text-align: center;
@@ -193,13 +185,6 @@ button {
     z-index: -2;
     padding: 10px;
     border-radius: inherit;
-    /* animation: animate 2.5s linear infinite; */
-}
-
-@keyframes animate {
-    to {
-        background-position: 200%;
-    } 
 }
     
 .playground::after{
@@ -235,7 +220,7 @@ button {
     --y: 50;
     height: 4%;
     aspect-ratio: 1/1;
-    background: red;
+    background: #3f093c;
     border-radius: 50%;
     top: calc(var(--y) * 1%);
     left: calc(var(--x) * 1%);
@@ -254,11 +239,7 @@ button {
     left: calc(50 * 1%);
     background: #007074;
     transform: translate(-50%, -50%);
-    z-index: 0;
-    /* text-align: center; */
-    
-    
-    
+    z-index: 0;  
 }
 
 .player1name {
@@ -478,6 +459,72 @@ input {
     font-size: clamp(0.3rem,  1vw, 1.5rem);
 }
 
+.tournament-board {
+    min-width: 400px;
+    z-index: 2;
+    position: relative;
+    border: 0.5dvw solid #007074;
+    border-radius: 1dvw;
+    width: 60dvw;
+    aspect-ratio: 16/8;
+    top: 30dvh;
+    left: 20dvw;
+    background-color:black;
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.match-line2 {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.match-line {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.final-line {
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+
+.player, .winner, .final {
+    position: relative;
+    color: white;
+    width: 12dvw;
+    aspect-ratio: 5/2;
+    border: 0.3dvw solid #007074;
+    border-radius: 1dvw;
+    text-align: center; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(0.5rem,  1vw, 1.8rem);    
+    background: linear-gradient(to right, #be1099, #4d0199, #6300c6, #be1099);
+    background-size: 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate 5.5s linear infinite;
+}
+
+.winner {
+    background-color: #d0f0d0;
+}
+
+.final {
+    background-color: #ffe599;
+    font-weight: bold;
+}
+
+
 
 
 
@@ -521,6 +568,11 @@ input {
         right: 5%;
         left: 5%;
     }
+    .tournament-board {
+        width: 90%;
+        right: 5%;
+        left: 5%;
+    }
     .games {
         flex-direction: column;
     }
@@ -554,6 +606,7 @@ input {
         left: 0;
     }
     .playground {
+        width: 100%;
         left: 0;
         right: 0;
     }
@@ -564,11 +617,28 @@ input {
         width: 100%;
         left: 0;
     }
+    .board {
+        /* min-width: 200px; */
+        width: 100%;
+        left: 1px;
+        right: 0;
+    }
+    .board1 {
+        height: 30%;
+    }
+    .board2 {
+        height: 30%;
+        text-align: right;
+    }
 
 }
 
 
-
+@keyframes animate {
+    to {
+        background-position: 200%;
+    } 
+}
 
 
 
