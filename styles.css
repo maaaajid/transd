@@ -34,24 +34,34 @@ body{
 }
 
 .v1 {
-    min-width: 300px;
-    width: 30dvw;
+    min-width: 200px;
+    width: 25dvw;
     height: 20dvh;
     background-color: #007074;
     border: 0.5dvw solid #5F0F40;
     border-radius: 1dvw;
-    font-size: 3dvw;
+    font-size: 2dvw;
     color: white;
 }
 
 .tournment {
-    min-width: 300px;
-    width: 30dvw;
+    min-width: 200px;
+    width: 25dvw;
     height: 20dvh;
     background-color:#007074;
     border: 0.5dvw solid #5F0F40;
     border-radius: 1dvw;
-    font-size: 3dvw;
+    font-size: 2dvw;
+    color: white;
+}
+.AI {
+    min-width: 200px;
+    width: 25dvw;
+    height: 20dvh;
+    background-color:#007074;
+    border: 0.5dvw solid #5F0F40;
+    border-radius: 1dvw;
+    font-size: 2dvw;
     color: white;
 }
 
@@ -220,7 +230,7 @@ button {
     --y: 50;
     height: 4%;
     aspect-ratio: 1/1;
-    background: #3f093c;
+    background: #bce7c0;
     border-radius: 50%;
     top: calc(var(--y) * 1%);
     left: calc(var(--x) * 1%);
@@ -297,6 +307,18 @@ button {
 }
 
 .restartTournment {
+    display: none;
+    min-width: 300px;
+    color: white;
+    width: 30dvw;
+    height: 15dvh;
+    background-color: #007074;
+    border: 0.5dvw solid #5F0F40;
+    border-radius: 1dvw;
+    font-size: clamp(1rem,  2vw, 3rem);
+}
+
+.resetMatchAi {
     display: none;
     min-width: 300px;
     color: white;

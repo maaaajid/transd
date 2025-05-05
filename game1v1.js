@@ -1,5 +1,5 @@
 import { players , gameRunning , startGame, games} from "./game.js";
-import { winnerBoard, gamesboard , resetMatch} from "./main.js";
+import { winnerBoard, gamesboard , resetMatch, aiRematch} from "./main.js";
 import { player2Name , player1Name, reTournment} from "./tournment.js";
 
 
@@ -31,6 +31,7 @@ async function    onevsone(event){
     if (res === 2 || res === 3){
         res = 0;
         reTournment.style.display = 'none';
+        aiRematch.style.display = 'none';
         resetMatch.style.display = 'block';
         winnerBoard.style.display = 'flex';
         document.removeEventListener('keyup', onevsone);

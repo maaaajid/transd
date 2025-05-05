@@ -1,11 +1,13 @@
-// import {  } from "./script.js";
-import { player1Name, player2Name, tempName , reTournment, startTournment, tournBoard} from "./tournment.js"
-import { gamesboard, winnerBoard, button1v1 } from "./main.js";
+import { player1Name, player2Name, tempName , startTournment, tournBoard} from "./tournment.js"
+import { gamesboard, winnerBoard, button1v1 , tournment, aiButton } from "./main.js";
 import { game1v1 } from "./game1v1.js";
+import { startAiGame } from "./ai.js";
 
 
 export function    quit()
 {
+    console.log('hello');
+    
     player1Name.innerText = tempName.p1;
     player2Name.innerText = '';
     tempName.p2 = '', tempName.p3 = '', tempName.p4 = ''
@@ -14,5 +16,6 @@ export function    quit()
     tournBoard.style.display = 'none';
     gamesboard.style.display = 'flex';
     button1v1.addEventListener('click', game1v1);
-    reTournment.addEventListener('click', startTournment);
+    aiButton.addEventListener('click', startAiGame);
+    tournment.addEventListener('click', startTournment);
 }

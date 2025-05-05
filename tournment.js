@@ -1,4 +1,4 @@
-import { gameMenu, gamesboard, winnerBoard } from "./main.js";
+import { gameMenu, gamesboard, winnerBoard, aiRematch } from "./main.js";
 import { gameRunning, startGame , games } from "./game.js";
 
 export const tournBoard = document.getElementById('tournamentBoard');
@@ -119,6 +119,7 @@ async function finnalRound(event) {
 function removeTBoard(event) {
     if (event.code === 'Space'){
         tournBoard.style.display = 'none';
+        aiRematch.style.display = 'none';
         winnerBoard.style.display = 'flex';
         document.removeEventListener('keyup', removeTBoard);
 }}

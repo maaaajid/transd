@@ -29,8 +29,12 @@ let paddle2Speed = 0;
 let paddle2YPos = playGroundrect.height / 2;
 let ballX = (playGroundrect.right - playGroundrect.left) / 2;
 let ballY = (playGroundrect.bottom - playGroundrect.top) / 2;
-let ballSpeedX = 16;
-let ballSpeedY = 8;
+let ballSpeedX = playGroundrect.width / 100;
+let ballSpeedY = playGroundrect.height / 100;
+let oldBallX = ballX;
+let newBallX = ballX;
+let oldBallY = ballY;
+
 
 const acceleration = 1;
 const maxSpeed = 25;
@@ -52,13 +56,16 @@ export  function startGame(e) {
                 
                 if (games.gametype === 'tournment')
                     gameLoopTournment(resolve);
-                else if (games.gametype == '1v1')
+                else if (games.gametype === '1v1' || games.gametype === 'AI')
                     gameLoop1v1(resolve);
+                // else if (games.gametype === 'AI')
+                //     gameLoop1v1(resolve);
             }
         })
     }
     
     
+ 
 
 function    gameLoopTournment(resolve) {
     
@@ -84,7 +91,7 @@ function    gameLoopTournment(resolve) {
         upDatePaddle2();
         upDateBall();
         upDatePlayresScore();
-        setTimeout(() => gameLoopTournment(resolve), 16);
+        setTimeout(() => gameLoopTournment(resolve), 25);
     }
 }
 
@@ -107,12 +114,53 @@ function    gameLoop1v1(resolve) {
     }
     if (gameRunning) {
         upDatePaddle1();
-        upDatePaddle2();
+        if (games.gametype === '1v1')
+            upDatePaddle2();
+        else if (games.gametype === 'AI')
+            upDatePaddleAi();
         upDateBall();
         upDatePlayresScore();
-        setTimeout(() => gameLoop1v1(resolve), 16);
+        setTimeout(() => gameLoop1v1(resolve), 25);
     }
 }
+
+function upDatePaddleAi(){
+    
+    newBallX = ballX;
+    if (oldBallX < newBallX){
+        if (paddle2YPos > ballY && ballY <= oldBallY){
+            paddle2Speed = Math.max(paddle2Speed - 4, -maxSpeed);
+        }
+        else if (paddle2YPos < ballY && ballY >= oldBallY){
+            paddle2Speed = Math.min(paddle2Speed + 4, maxSpeed);
+        }
+        else{
+            if(paddle2Speed > 0)
+            {
+                paddle2Speed = Math.max(paddle2Speed - 3, 0);
+            }
+            else if(paddle2Speed < 0)
+            {
+                paddle2Speed = Math.min(paddle2Speed + 3, 0);
+            }
+        }
+    }
+    oldBallX = newBallX;
+    oldBallY = ballY;
+    paddle2YPos += paddle2Speed;
+    if (paddle2YPos - paddle2XY.height / 2 <= 0)
+        {
+            paddle2YPos -= paddle2Speed;
+        }
+    if (paddle2YPos + paddle2XY.height / 2 >= playGroundrect.bottom - playGroundrect.top)
+        {
+        paddle2YPos -= paddle2Speed;
+    }
+    paddel2.style.top = paddle2YPos + 'px';
+
+
+}
+
 
 function    handleKeys(e) {
     keyPressed[e.key] = true;
@@ -124,26 +172,26 @@ function    handleKeyUp(e)
 }
 
 function    upDatePaddle1() {
-    
-    if (keyPressed['w']){
-        paddle1Speed = Math.max(paddle1Speed - acceleration, -maxSpeed);
-    }
-    else if (keyPressed['s']){
-        paddle1Speed = Math.min(paddle1Speed + acceleration, maxSpeed);
-    }
-    else{
-        if(paddle1Speed > 0)
-        {
-            paddle1Speed = Math.max(paddle1Speed - acceleration, 0);
+
+        if (keyPressed['w']){
+            paddle1Speed = Math.max(paddle1Speed - acceleration, -maxSpeed);
         }
-        else if(paddle1Speed < 0)
-        {
-            paddle1Speed = Math.min(paddle1Speed + acceleration, 0);
+        else if (keyPressed['s']){
+            paddle1Speed = Math.min(paddle1Speed + acceleration, maxSpeed);
         }
-    }
-    paddle1YPos += paddle1Speed;
-    if (paddle1YPos - paddle1XY.height / 2 <= 0)
-    {
+        else{
+            if(paddle1Speed > 0)
+                {
+                    paddle1Speed = Math.max(paddle1Speed - acceleration, 0);
+                }
+                else if(paddle1Speed < 0)
+                    {
+                        paddle1Speed = Math.min(paddle1Speed + acceleration, 0);
+                    }
+                }
+                paddle1YPos += paddle1Speed;
+                if (paddle1YPos - paddle1XY.height / 2 <= 0)
+                    {
         paddle1YPos -= paddle1Speed;
     }
     if (paddle1YPos + paddle1XY.height / 2 >= playGroundrect.bottom - playGroundrect.top)
@@ -249,8 +297,8 @@ function    resetGame() {
     paddle2YPos = playGroundrect.height / 2;
     ballX = (playGroundrect.right - playGroundrect.left) / 2;
     ballY = (playGroundrect.bottom - playGroundrect.top) / 2;
-    ballSpeedX = 14;
-    ballSpeedY = 8;
+    ballSpeedX = 12;
+    ballSpeedY = 6;
     ball.style.display = 'block';
     starttext.style.display = 'block';
     if (players.player1 < 3 && players.player2 < 3)
