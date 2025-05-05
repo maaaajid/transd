@@ -1,31 +1,39 @@
-import { gameMenu, gamesboard, winnerBoard, aiRematch } from "./main.js";
+import { gamesboard, winnerBoard, aiRematch , winnerText, resetMatch} from "./main.js";
 import { gameRunning, startGame , games } from "./game.js";
 
-export const tournBoard = document.getElementById('tournamentBoard');
-export const player1Name = document.getElementById('player1name');
-export const player2Name = document.getElementById('player2name');
-export const reTournment = document.getElementById('restartTournment');
-const tournmentNames = document.getElementById('tournmentNames');
-const error2 = document.getElementById('error2');
-const inputName2 = document.getElementById('inputName2');
-const inputName3 = document.getElementById('inputName3');
-const inputName4 = document.getElementById('inputName4');
-const submitUsers = document.getElementById('submitUsers');
-const tb1 = document.getElementById('p1');
-const tb2 = document.getElementById('p2');
-const tb3 = document.getElementById('p3');
-const tb4 = document.getElementById('p4');
-const tb5 = document.getElementById('p5');
-const tb6 = document.getElementById('p6');
-const tb7 = document.getElementById('p7');
+export const tournBoard = document.getElementById('tournamentBoard') as HTMLDivElement;
+export const player1Name = document.getElementById('player1name') as HTMLDivElement;
+export const player2Name = document.getElementById('player2name') as HTMLDivElement;
+export const reTournment = document.getElementById('restartTournment') as HTMLButtonElement;
+const tournmentNames = document.getElementById('tournmentNames') as HTMLDivElement;
+const error2 = document.getElementById('error2') as HTMLHeadingElement;
+const inputName2 = document.getElementById('inputName2') as HTMLInputElement;
+const inputName3 = document.getElementById('inputName3') as HTMLInputElement;
+const inputName4 = document.getElementById('inputName4') as HTMLInputElement;
+const submitUsers = document.getElementById('submitUsers') as HTMLButtonElement;
+const tb1 = document.getElementById('p1') as HTMLDivElement;
+const tb2 = document.getElementById('p2') as HTMLDivElement;
+const tb3 = document.getElementById('p3') as HTMLDivElement;
+const tb4 = document.getElementById('p4') as HTMLDivElement;
+const tb5 = document.getElementById('p5') as HTMLDivElement;
+const tb6 = document.getElementById('p6') as HTMLDivElement;
+const tb7 = document.getElementById('p7') as HTMLDivElement;
 
-export const tempName = {
-    p1 : player1Name.innerText,
-    p2 : '',
-    p3 : '',
-    p4 : '',
-    winners : []
+
+export const tempName: {
+  p1: string;
+  p2: string;
+  p3: string;
+  p4: string;
+  winners: string[];
+} = {
+  p1: player1Name.innerText,
+  p2: '',
+  p3: '',
+  p4: '',
+  winners: []
 };
+
 reTournment.addEventListener('click', startTournment);
 
 export async function    startTournment()
@@ -34,8 +42,8 @@ export async function    startTournment()
     player1Name.innerText = tempName.p1;
     tempName.winners[0] = '', tempName.winners[1] = '', tempName.winners[2] = '';
     tb5.innerText = '', tb6.innerText = '', tb7.innerText = '';
-    tb1.style.opacity = 1, tb2.style.opacity = 1, tb3.style.opacity = 1,
-    tb4.style.opacity = 1, tb5.style.opacity = 1, tb6.style.opacity = 1, tb7.style.opacity = 1, 
+    tb1.style.opacity = '1', tb2.style.opacity = '1', tb3.style.opacity = '1',
+    tb4.style.opacity = '1', tb5.style.opacity = '1', tb6.style.opacity = '1', tb7.style.opacity = '1', 
     gamesboard.style.display = 'none';
     winnerBoard.style.display = 'none';
     tournBoard.style.display = 'none';
@@ -51,15 +59,15 @@ export async function    startTournment()
     }
 }
 
-async function firstRound(event) {
+async function firstRound(event: KeyboardEvent) {
     let res;
     if (!gameRunning) {
         
             res = await startGame(event);
         if (res === 3)
-            tempName.winners[0] = tempName.p1, tb2.style.opacity = 0.3;
+            tempName.winners[0] = tempName.p1, tb2.style.opacity = '0.3';
         else if (res === 2)
-            tempName.winners[0] = tempName.p2, tb1.style.opacity = 0.3;
+            tempName.winners[0] = tempName.p2, tb1.style.opacity = '0.3';
         if (tempName.winners[0]){
             player1Name.innerText = tempName.p3;
             player2Name.innerText = tempName.p4;
@@ -73,14 +81,14 @@ async function firstRound(event) {
     }
 }
 
-async function secondRound(event) {
+async function secondRound(event: KeyboardEvent) {
     let res;
     if (!gameRunning && tempName.winners[0]){
         res = await startGame(event);
         if (res === 3)
-            tempName.winners[1] = tempName.p3, tb4.style.opacity = 0.3;
+            tempName.winners[1] = tempName.p3, tb4.style.opacity = '0.3';
         else if (res === 2)
-            tempName.winners[1] = tempName.p4, tb3.style.opacity = 0.3;
+            tempName.winners[1] = tempName.p4, tb3.style.opacity = '0.3';
         if (tempName.winners[0] && tempName.winners[1]){
             player1Name.innerText = tempName.winners[0];
             player2Name.innerText = tempName.winners[1];
@@ -93,16 +101,16 @@ async function secondRound(event) {
     }
 } 
 
-async function finnalRound(event) {
+async function finnalRound(event: KeyboardEvent) {
     let res;
     if (!gameRunning && tempName.winners[1]){
         res = await startGame(event);
         if (res === 3)
-            tempName.winners[2]= tempName.winners[0], tb5.style.opacity = 0.3
-        , tb4.style.opacity = 0.3, tb3.style.opacity = 0.3;
+            tempName.winners[2]= tempName.winners[0], tb5.style.opacity = '0.3'
+        , tb4.style.opacity = '0.3', tb3.style.opacity = '0.3';
         else if (res === 2)
-            tempName.winners[2] = tempName.winners[1], tb6.style.opacity = 0.3
-        , tb2.style.opacity = 0.3, tb1.style.opacity = 0.3;
+            tempName.winners[2] = tempName.winners[1], tb6.style.opacity = '0.3'
+        , tb2.style.opacity = '0.3', tb1.style.opacity = '0.3';
     }
     if (tempName.winners[2])
     {
@@ -116,7 +124,7 @@ async function finnalRound(event) {
         document.addEventListener('keyup', removeTBoard);
     }}
     
-function removeTBoard(event) {
+function removeTBoard(event: KeyboardEvent) {
     if (event.code === 'Space'){
         tournBoard.style.display = 'none';
         aiRematch.style.display = 'none';
@@ -124,11 +132,11 @@ function removeTBoard(event) {
         document.removeEventListener('keyup', removeTBoard);
 }}
 
-function getParticepantNames() {
-    return new Promise((resolve) => {
+function getParticepantNames(): Promise<void> {
+    return new Promise((resolve:(value: void) => void) => {
       tournmentNames.style.display = 'flex';
   
-      function handleSubmit(e) {
+      function handleSubmit(e: MouseEvent) {
         e.preventDefault();
         if (inputName2.value === '' ||
           inputName3.value === '' ||

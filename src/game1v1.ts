@@ -1,11 +1,12 @@
 import { players , gameRunning , startGame, games} from "./game.js";
-import { winnerBoard, gamesboard , resetMatch, aiRematch} from "./main.js";
+import { winnerBoard, gamesboard , resetMatch, aiRematch , winnerText } from "./main.js";
 import { player2Name , player1Name, reTournment} from "./tournment.js";
 
 
-const error =  document.getElementById('error');
-const inputName = document.getElementById('inputName');
-const username = document.getElementById('userName');
+const error =  document.getElementById('error') as HTMLHeadingElement;
+const inputName = document.getElementById('inputName') as HTMLInputElement;
+const username = document.getElementById('userName') as HTMLDivElement;
+const submit = document.getElementById('submit') as HTMLButtonElement 
 
 export async function    game1v1()
 {
@@ -20,8 +21,8 @@ export async function    game1v1()
 }
 
 
-async function    onevsone(event){
-    let res = 0;
+async function    onevsone(event: KeyboardEvent){
+    let res :number = 0;
     if (!gameRunning && player2Name.innerText)
         res = await startGame(event);
     if (res === 3)
@@ -38,10 +39,10 @@ async function    onevsone(event){
     } 
 }
 
-function    getUserName(playername)
+function    getUserName(playername: HTMLDivElement)
 {
     username.style.display = 'flex';
-    submit.addEventListener('click',  (e) => {
+    submit.addEventListener('click',  (e:MouseEvent) => {
         if (inputName.value === ''){
             e.preventDefault()
             error.innerText = "Enter username";

@@ -1,5 +1,5 @@
 import { players , gameRunning , startGame, games} from "./game.js";
-import { winnerBoard, gamesboard , resetMatch , aiRematch} from "./main.js";
+import { winnerBoard, gamesboard , resetMatch , aiRematch, winnerText} from "./main.js";
 import { player2Name , player1Name, reTournment} from "./tournment.js";
 
 
@@ -15,8 +15,8 @@ export async function    startAiGame()
 }
 
 
-async function    aiGame(event){
-    let res = 0;
+async function    aiGame(event: KeyboardEvent){
+    let res: number = 0;
     if (!gameRunning)
         res = await startGame(event);
     if (res === 3)

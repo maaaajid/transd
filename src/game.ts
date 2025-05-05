@@ -1,28 +1,32 @@
 import { tournBoard } from "./tournment.js";
 
-const starttext = document.getElementById("frame");
-const restartText = document.getElementById('restartText');
-const playGround = document.getElementById('playground');
-const paddel1 = document.getElementById("padle1");
-const paddle1XY = paddel1.getBoundingClientRect();
-const paddel2 = document.getElementById("padle2");
-const paddle2XY = paddel1.getBoundingClientRect();
-const playGroundrect = playGround.getBoundingClientRect();
-const ball = document.getElementById('ball');
-const ballRect = ball.getBoundingClientRect();
-const p1Score = document.getElementById('player1score');
-const p2Score = document.getElementById('player2score');
+const starttext = document.getElementById("frame") as HTMLHeadingElement;
+// const restartText = document.getElementById('restartText');
+const playGround = document.getElementById('playground') as HTMLDivElement;
+const paddel1 = document.getElementById("padle1") as HTMLDivElement;
+const paddle1XY = paddel1.getBoundingClientRect() as DOMRect;
+const paddel2 = document.getElementById("padle2") as HTMLDivElement;
+const paddle2XY = paddel1.getBoundingClientRect() as DOMRect;
+const playGroundrect = playGround.getBoundingClientRect() as DOMRect;
+const ball = document.getElementById('ball') as HTMLDivElement;
+const ballRect = ball.getBoundingClientRect() as DOMRect;
+const p1Score = document.getElementById('player1score') as HTMLDivElement;
+const p2Score = document.getElementById('player2score') as HTMLDivElement;
 
-export let gameRunning = false;
-export const players = {
-    player1 :  0,
-    player2 :  0
+export let gameRunning: boolean = false;
+
+export const players : {
+    player1: number  ,
+    player2: number 
+} = {
+    player1 : 0,
+    player2 : 0
 };
 export const games = {
     gametype : ''
 };
 
-let keyPressed = {};
+let keyPressed: { [key: string]: boolean } = {};
 let paddle1Speed = 0;
 let paddle1YPos = playGroundrect.height / 2;
 let paddle2Speed = 0;
@@ -42,8 +46,8 @@ const maxSpeed = 25;
 document.addEventListener('keydown', handleKeys);
 document.addEventListener('keyup', handleKeyUp);
 
-export  function startGame(e) {
-    return new Promise((resolve) => {
+export  function startGame(e : KeyboardEvent):Promise<number> {
+    return new Promise((resolve: (value: number) => void) => {
         
     if (players.player1 === 0 && players.player2 === 0 && games.gametype === 'tournment')
         tournBoard.style.display = 'flex';
@@ -58,16 +62,15 @@ export  function startGame(e) {
                     gameLoopTournment(resolve);
                 else if (games.gametype === '1v1' || games.gametype === 'AI')
                     gameLoop1v1(resolve);
-                // else if (games.gametype === 'AI')
-                //     gameLoop1v1(resolve);
-            }
-        })
-    }
+        }
+    })
+}
     
     
  
 
-function    gameLoopTournment(resolve) {
+function    gameLoopTournment(resolve: (value: 2 | 3) => void)
+ {
     
         if (players.player1 === 3) {
         tournBoard.style.display = 'flex';
@@ -95,8 +98,8 @@ function    gameLoopTournment(resolve) {
     }
 }
 
-function    gameLoop1v1(resolve) {
-    
+function    gameLoop1v1(resolve: (value: 2 | 3) => void)
+{    
     if (players.player1 === 3) {
         gameRunning = false;
         players.player1 = 0;
@@ -162,11 +165,11 @@ function upDatePaddleAi(){
 }
 
 
-function    handleKeys(e) {
+function    handleKeys(e: KeyboardEvent) {
     keyPressed[e.key] = true;
 }
 
-function    handleKeyUp(e)
+function    handleKeyUp(e: KeyboardEvent)
 {
     keyPressed[e.key] = false;
 }
@@ -282,8 +285,8 @@ function upDateBall() {
 }
     
 function    upDatePlayresScore() {
-    p1Score.innerText = players.player1;
-    p2Score.innerText = players.player2;
+    p1Score.innerText = players.player1.toString();
+    p2Score.innerText = players.player2.toString();
 }
     
     
