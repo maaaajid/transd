@@ -1,16 +1,11 @@
 import { tournBoard } from "./tournment.js";
-
+import { paddel3, paddel4, paddle3XY, paddle4XY } from "./game2v2.js";
 const starttext = document.getElementById("frame") as HTMLHeadingElement;
-// const restartText = document.getElementById('restartText');
 const playGround = document.getElementById('playground') as HTMLDivElement;
 const paddel1 = document.getElementById("padle1") as HTMLDivElement;
 const paddle1XY = paddel1.getBoundingClientRect() as DOMRect;
 const paddel2 = document.getElementById("padle2") as HTMLDivElement;
 const paddle2XY = paddel2.getBoundingClientRect() as DOMRect;
-const paddel3 = document.getElementById("padle3") as HTMLDivElement;
-const paddle3XY = paddel3.getBoundingClientRect() as DOMRect;
-const paddel4 = document.getElementById("padle4") as HTMLDivElement;
-const paddle4XY = paddel4.getBoundingClientRect() as DOMRect;
 const playGroundrect = playGround.getBoundingClientRect() as DOMRect;
 const ball = document.getElementById('ball') as HTMLDivElement;
 const ballRect = ball.getBoundingClientRect() as DOMRect;

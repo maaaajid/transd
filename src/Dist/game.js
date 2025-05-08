@@ -1,15 +1,11 @@
 import { tournBoard } from "./tournment.js";
+import { paddel3, paddel4, paddle3XY, paddle4XY } from "./game2v2.js";
 const starttext = document.getElementById("frame");
-// const restartText = document.getElementById('restartText');
 const playGround = document.getElementById('playground');
 const paddel1 = document.getElementById("padle1");
 const paddle1XY = paddel1.getBoundingClientRect();
 const paddel2 = document.getElementById("padle2");
 const paddle2XY = paddel2.getBoundingClientRect();
-const paddel3 = document.getElementById("padle3");
-const paddle3XY = paddel3.getBoundingClientRect();
-const paddel4 = document.getElementById("padle4");
-const paddle4XY = paddel4.getBoundingClientRect();
 const playGroundrect = playGround.getBoundingClientRect();
 const ball = document.getElementById('ball');
 const ballRect = ball.getBoundingClientRect();
@@ -290,7 +286,6 @@ function upDateBall() {
             && oldDirctionX - (ballRect.width / 2) >= (paddle3XY.right - playGroundrect.left)
             && ballY + (ballRect.width / 2) >= (paddle3YPos - (paddle3XY.height / 2))
             && ballY - (ballRect.width / 2) <= (paddle3YPos + (paddle3XY.height / 2))) {
-            console.log('in');
             ballSpeedX *= -1;
             ballSpeedX -= 0.5;
             ballSpeedY -= 0.5;
@@ -299,7 +294,6 @@ function upDateBall() {
             && oldDirctionX + (ballRect.width / 2) <= (paddle4XY.left - playGroundrect.left)
             && ballY + (ballRect.width / 2) >= (paddle4YPos - (paddle4XY.height / 2))
             && ballY - (ballRect.width / 2) <= (paddle4YPos + (paddle4XY.height / 2))) {
-            console.log('out');
             ballSpeedX *= -1;
             ballSpeedX += 0.5;
             ballSpeedY += 0.5;

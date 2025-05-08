@@ -3,9 +3,15 @@ import { gameRunning, startGame , games } from "./game.js";
 import { getParticepantNames , tempName, player2Name, player1Name, reTournment} from "./tournment.js";
 
 const reMatch2v2 = document.getElementById('reset2v2') as HTMLButtonElement;
+export const paddel3 = document.getElementById("padle3") as HTMLDivElement;
+export const paddle3XY = paddel3.getBoundingClientRect() as DOMRect;
+export const paddel4 = document.getElementById("padle4") as HTMLDivElement;
+export const paddle4XY = paddel4.getBoundingClientRect() as DOMRect;
 
 
 export async function    startGame2v2(){
+    paddel3.style.display = 'flex';
+    paddel4.style.display = 'flex';
     games.gametype = '2v2';
     player2Name.innerText = tempName.p1;
     gamesboard.style.display = 'none';

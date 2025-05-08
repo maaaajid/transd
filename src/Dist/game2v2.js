@@ -11,8 +11,14 @@ import { gamesboard, winnerBoard, aiRematch, winnerText, resetMatch } from "./ma
 import { gameRunning, startGame, games } from "./game.js";
 import { getParticepantNames, tempName, player2Name, player1Name, reTournment } from "./tournment.js";
 const reMatch2v2 = document.getElementById('reset2v2');
+export const paddel3 = document.getElementById("padle3");
+export const paddle3XY = paddel3.getBoundingClientRect();
+export const paddel4 = document.getElementById("padle4");
+export const paddle4XY = paddel4.getBoundingClientRect();
 export function startGame2v2() {
     return __awaiter(this, void 0, void 0, function* () {
+        paddel3.style.display = 'flex';
+        paddel4.style.display = 'flex';
         games.gametype = '2v2';
         player2Name.innerText = tempName.p1;
         gamesboard.style.display = 'none';
