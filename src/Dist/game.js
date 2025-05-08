@@ -42,8 +42,6 @@ document.addEventListener('keydown', handleKeys);
 document.addEventListener('keyup', handleKeyUp);
 export function startGame(e) {
     return new Promise((resolve) => {
-        console.log(paddle3XY);
-        console.log(paddle1XY);
         if (players.player1 === 0 && players.player2 === 0 && games.gametype === 'tournment')
             tournBoard.style.display = 'flex';
         if (e.code === 'Space' && players.player1 < 3
@@ -109,17 +107,14 @@ function gameLoop1v1(resolve) {
         upDatePaddle1();
         if (games.gametype === '1v1')
             upDatePaddle2();
-        else if (games.gametype === 'AI') {
+        else if (games.gametype === 'AI')
             upDatePaddleAi();
-        }
         upDateBall();
         upDatePlayresScore();
         setTimeout(() => gameLoop1v1(resolve), 25);
     }
 }
 function gameLoop2v2(resolve) {
-    // paddel3.style.display = 'block';
-    // paddel4.style.display = 'block';
     if (players.player1 === 3) {
         gameRunning = false;
         players.player1 = 0;
@@ -281,7 +276,6 @@ function upDateBall() {
     ballX -= ballSpeedX;
     ballY -= ballSpeedY;
     if (games.gametype === '2v2') {
-        console.log('hello');
         if (ballX - (ballRect.width / 2) <= (paddle3XY.right - playGroundrect.left)
             && oldDirctionX - (ballRect.width / 2) >= (paddle3XY.right - playGroundrect.left)
             && ballY + (ballRect.width / 2) >= (paddle3YPos - (paddle3XY.height / 2))

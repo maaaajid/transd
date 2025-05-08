@@ -26,8 +26,8 @@ export function startGame2v2() {
         if (tempName.p2 === '' || tempName.p3 === '' || tempName.p4 === '')
             yield getParticepantNames();
         if (tempName.p2 != '' && tempName.p3 != '' && tempName.p4 != '') {
-            player1Name.innerText = tempName.p1;
-            player2Name.innerText = tempName.p2;
+            player1Name.innerText = tempName.p1 + '\n' + tempName.p3;
+            player2Name.innerText = tempName.p2 + '\n' + tempName.p4;
             document.addEventListener('keyup', game2v2);
         }
     });
