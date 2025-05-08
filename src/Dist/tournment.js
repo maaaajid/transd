@@ -129,7 +129,7 @@ function removeTBoard(event) {
         document.removeEventListener('keyup', removeTBoard);
     }
 }
-function getParticepantNames() {
+export function getParticepantNames() {
     return new Promise((resolve) => {
         tournmentNames.style.display = 'flex';
         function handleSubmit(e) {

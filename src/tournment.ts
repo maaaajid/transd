@@ -132,7 +132,7 @@ function removeTBoard(event: KeyboardEvent) {
         document.removeEventListener('keyup', removeTBoard);
 }}
 
-function getParticepantNames(): Promise<void> {
+export function getParticepantNames(): Promise<void> {
     return new Promise((resolve:(value: void) => void) => {
       tournmentNames.style.display = 'flex';
   
