@@ -1,6 +1,7 @@
 import { players , gameRunning , startGame, games} from "./game.js";
 import { winnerBoard, gamesboard , resetMatch , aiRematch, winnerText} from "./main.js";
 import { player2Name , player1Name, reTournment} from "./tournment.js";
+import { reMatch2v2 } from "./game2v2.js";
 
 
 export async function    startAiGame()
@@ -27,6 +28,7 @@ async function    aiGame(event: KeyboardEvent){
         res = 0;
         reTournment.style.display = 'none';
         resetMatch.style.display = 'none';
+        reMatch2v2.style.display = 'none';
         aiRematch.style.display = 'block';
         winnerBoard.style.display = 'flex';
         document.removeEventListener('keyup', aiGame);

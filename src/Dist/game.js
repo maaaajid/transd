@@ -344,6 +344,10 @@ function resetGame() {
     paddle1YPos = playGroundrect.height / 2;
     paddle2Speed = 0;
     paddle2YPos = playGroundrect.height / 2;
+    paddle3Speed = 0;
+    paddle3YPos = playGroundrect.height / 2;
+    paddle4Speed = 0;
+    paddle4YPos = playGroundrect.height / 2;
     ballX = (playGroundrect.right - playGroundrect.left) / 2;
     ballY = (playGroundrect.bottom - playGroundrect.top) / 2;
     ballSpeedX = playGroundrect.width / 100;

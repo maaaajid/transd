@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { players, gameRunning, startGame, games } from "./game.js";
 import { winnerBoard, gamesboard, resetMatch, aiRematch, winnerText } from "./main.js";
 import { player2Name, player1Name, reTournment } from "./tournment.js";
+import { reMatch2v2 } from "./game2v2.js";
 export function startAiGame() {
     return __awaiter(this, void 0, void 0, function* () {
         games.gametype = 'AI';
@@ -34,6 +35,7 @@ function aiGame(event) {
             res = 0;
             reTournment.style.display = 'none';
             resetMatch.style.display = 'none';
+            reMatch2v2.style.display = 'none';
             aiRematch.style.display = 'block';
             winnerBoard.style.display = 'flex';
             document.removeEventListener('keyup', aiGame);

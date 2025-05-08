@@ -52,9 +52,6 @@ document.addEventListener('keyup', handleKeyUp);
 
 export  function startGame(e : KeyboardEvent):Promise<number> {
     return new Promise((resolve: (value: number) => void) => {
-        console.log(paddle3XY);
-        console.log(paddle1XY);
-                
     if (players.player1 === 0 && players.player2 === 0 && games.gametype === 'tournment')
         tournBoard.style.display = 'flex';
         if (e.code === 'Space' && players.player1 < 3 
@@ -126,9 +123,8 @@ function    gameLoop1v1(resolve: (value: 2 | 3) => void)
         upDatePaddle1();
         if (games.gametype === '1v1')
             upDatePaddle2();
-        else if (games.gametype === 'AI'){
+        else if (games.gametype === 'AI')
             upDatePaddleAi();
-        }
         upDateBall();
         upDatePlayresScore();
         setTimeout(() => gameLoop1v1(resolve), 25);
@@ -137,9 +133,7 @@ function    gameLoop1v1(resolve: (value: 2 | 3) => void)
 
 
 function    gameLoop2v2(resolve: (value: 2 | 3) => void)
- {  
-    // paddel3.style.display = 'block';
-    // paddel4.style.display = 'block';
+ {
     if (players.player1 === 3) {
         gameRunning = false;
         players.player1 = 0;
@@ -199,8 +193,6 @@ function upDatePaddleAi(){
         paddle2YPos -= paddle2Speed;
     }
     paddel2.style.top = paddle2YPos + 'px';
-
-
 }
 
 
@@ -341,8 +333,6 @@ function upDateBall() {
     ballX -= ballSpeedX;
     ballY -= ballSpeedY;
     if (games.gametype === '2v2'){
-        console.log('hello');
-        
         if (ballX - (ballRect.width / 2) <= (paddle3XY.right - playGroundrect.left) 
             && oldDirctionX - (ballRect.width / 2) >= (paddle3XY.right - playGroundrect.left) 
             && ballY + (ballRect.width / 2)  >= (paddle3YPos - (paddle3XY.height / 2))
@@ -409,6 +399,10 @@ function    resetGame() {
     paddle1YPos = playGroundrect.height / 2;
     paddle2Speed = 0;
     paddle2YPos = playGroundrect.height / 2;
+    paddle3Speed = 0;
+    paddle3YPos = playGroundrect.height / 2;
+    paddle4Speed = 0;
+    paddle4YPos = playGroundrect.height / 2;
     ballX = (playGroundrect.right - playGroundrect.left) / 2;
     ballY = (playGroundrect.bottom - playGroundrect.top) / 2;
     ballSpeedX = playGroundrect.width / 100;

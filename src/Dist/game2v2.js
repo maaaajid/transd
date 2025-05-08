@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { gamesboard, winnerBoard, aiRematch, winnerText, resetMatch } from "./main.js";
 import { gameRunning, startGame, games } from "./game.js";
 import { getParticepantNames, tempName, player2Name, player1Name, reTournment } from "./tournment.js";
-const reMatch2v2 = document.getElementById('reset2v2');
+export const reMatch2v2 = document.getElementById('reset2v2');
 export const paddel3 = document.getElementById("padle3");
 export const paddle3XY = paddel3.getBoundingClientRect();
 export const paddel4 = document.getElementById("padle4");

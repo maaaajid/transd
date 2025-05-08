@@ -2,7 +2,7 @@ import { startTournment , reTournment} from "./tournment.js";
 import { quit } from "./quit.js";
 import { game1v1 } from "./game1v1.js"
 import { startAiGame } from "./ai.js";
-import { startGame2v2 , paddel3, paddel4} from "./game2v2.js";
+import { startGame2v2 , paddel3, paddel4 , reMatch2v2} from "./game2v2.js";
 
 export const gamesboard = document.getElementById('games') as HTMLDivElement;
 export const winnerBoard  = document.getElementById('frame2') as HTMLDivElement;
@@ -22,6 +22,7 @@ quitGame.addEventListener('click', quit);
 resetMatch.addEventListener('click', game1v1);
 aiRematch.addEventListener('click', startAiGame);
 reTournment.addEventListener('click', startTournment);
+reMatch2v2.addEventListener('click', startGame2v2);
 
 gameMenu();
 
