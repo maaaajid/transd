@@ -1,17 +1,29 @@
 import { tournBoard } from "./tournment.js";
-import { paddel3, paddel4, paddle3XY, paddle4XY } from "./game2v2.js";
 const starttext = document.getElementById("frame");
 const playGround = document.getElementById('playground');
 const paddel1 = document.getElementById("padle1");
-const paddle1XY = paddel1.getBoundingClientRect();
+let paddle1XY = paddel1.getBoundingClientRect();
 const paddel2 = document.getElementById("padle2");
-const paddle2XY = paddel2.getBoundingClientRect();
-const playGroundrect = playGround.getBoundingClientRect();
+let paddle2XY = paddel2.getBoundingClientRect();
+let playGroundrect = playGround.getBoundingClientRect();
 const ball = document.getElementById('ball');
-const ballRect = ball.getBoundingClientRect();
+let ballRect = ball.getBoundingClientRect();
 const p1Score = document.getElementById('player1score');
 const p2Score = document.getElementById('player2score');
+export const paddel3 = document.getElementById("padle3");
+let paddle3XY = paddel3.getBoundingClientRect();
+export const paddel4 = document.getElementById("padle4");
+let paddle4XY = paddel4.getBoundingClientRect();
 export let gameRunning = false;
+export function resizeGame() {
+    console.log("hello");
+    paddle1XY = paddel1.getBoundingClientRect();
+    paddle2XY = paddel2.getBoundingClientRect();
+    paddle3XY = paddel3.getBoundingClientRect();
+    paddle4XY = paddel4.getBoundingClientRect();
+    playGroundrect = playGround.getBoundingClientRect();
+    ballRect = ball.getBoundingClientRect();
+}
 export const players = {
     player1: 0,
     player2: 0
@@ -30,8 +42,8 @@ let paddle4Speed = 0;
 let paddle2YPos = playGroundrect.height / 2;
 let ballX = (playGroundrect.right - playGroundrect.left) / 2;
 let ballY = (playGroundrect.bottom - playGroundrect.top) / 2;
-let ballSpeedX = playGroundrect.width / 100;
-let ballSpeedY = playGroundrect.height / 100;
+let ballSpeedX = playGroundrect.width / 200;
+let ballSpeedY = playGroundrect.height / 200;
 let oldBallX = ballX;
 let oldDirctionX = ballX;
 let newBallX = ballX;

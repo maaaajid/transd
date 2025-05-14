@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script src="./src/Dist/main.js" type="module"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,10 +12,10 @@
 </head>
 <body>
     <div class="games" id="games">
-        <button class="v1" id="v1">1 VS 1</button>
-        <button class="tournment" id="tournment">tournment</button>
-        <button class="AI" id="AI">YOU VS AI</button>
-        <button class="V2" id="V2">2 VS 2</button>
+        <button class="buttonCard v1" id="v1">1 VS 1</button>
+        <button class="buttonCard tournment" id="tournment">tournment</button>
+        <button class="buttonCard V2" id="V2">2 VS 2</button>
+        <button class="buttonCard AI" id="AI"></button>
     </div>
     <div class="score">
         <div class="board board1" id="board">
@@ -49,15 +49,15 @@
     <div class="userName" id="userName">
         <h1 class="playerNumber" id="playerNumber">Player 2 name</h1>
         <h3 class="error" id="error"></h3>
-        <input type="text" placeholder="Enter your username" class="inputName" id="inputName">
+        <input type="text" placeholder="Enter your username" class="inputName 1" id="inputName">
         <button class="submit" id="submit">submit</button>
     </div>
     <div class="tournmentNames" id="tournmentNames">
         <h1 class="participantUsers " id="participantUsers">Participant usernames</h1>
         <h3 class="error2" id="error2"></h3>
-        <input type="text" placeholder="participant 2 username" class="inputName2" id="inputName2">
-        <input type="text" placeholder="participant 3 username" class="inputName3" id="inputName3">
-        <input type="text" placeholder="participant 4 username" class="inputName4" id="inputName4">
+        <input type="text" placeholder="participant 2 username" class="inputName 2" id="inputName2">
+        <input type="text" placeholder="participant 3 username" class="inputName 3" id="inputName3">
+        <input type="text" placeholder="participant 4 username" class="inputName 4" id="inputName4">
         <button class="submitUsers" id="submitUsers">submit</button>
     </div>
     <div class="tournament-board" id="tournamentBoard">

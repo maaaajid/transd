@@ -1,18 +1,37 @@
 import { tournBoard } from "./tournment.js";
-import { paddel3, paddel4, paddle3XY, paddle4XY } from "./game2v2.js";
 const starttext = document.getElementById("frame") as HTMLHeadingElement;
 const playGround = document.getElementById('playground') as HTMLDivElement;
 const paddel1 = document.getElementById("padle1") as HTMLDivElement;
-const paddle1XY = paddel1.getBoundingClientRect() as DOMRect;
+let paddle1XY = paddel1.getBoundingClientRect() as DOMRect;
 const paddel2 = document.getElementById("padle2") as HTMLDivElement;
-const paddle2XY = paddel2.getBoundingClientRect() as DOMRect;
-const playGroundrect = playGround.getBoundingClientRect() as DOMRect;
+let paddle2XY = paddel2.getBoundingClientRect() as DOMRect;
+let playGroundrect = playGround.getBoundingClientRect() as DOMRect;
 const ball = document.getElementById('ball') as HTMLDivElement;
-const ballRect = ball.getBoundingClientRect() as DOMRect;
+let ballRect = ball.getBoundingClientRect() as DOMRect;
 const p1Score = document.getElementById('player1score') as HTMLDivElement;
 const p2Score = document.getElementById('player2score') as HTMLDivElement;
+export const paddel3 = document.getElementById("padle3") as HTMLDivElement;
+let paddle3XY = paddel3.getBoundingClientRect() as DOMRect;
+export const paddel4 = document.getElementById("padle4") as HTMLDivElement;
+let paddle4XY = paddel4.getBoundingClientRect() as DOMRect;
 
 export let gameRunning: boolean = false;
+
+
+export function resizeGame() {
+    console.log("hello");
+    
+    paddle1XY = paddel1.getBoundingClientRect();
+    paddle2XY = paddel2.getBoundingClientRect();
+    paddle3XY = paddel3.getBoundingClientRect();
+    paddle4XY = paddel4.getBoundingClientRect();
+    playGroundrect = playGround.getBoundingClientRect();
+    ballRect = ball.getBoundingClientRect();
+
+}
+
+
+
 
 export const players : {
     player1: number  ,
@@ -36,8 +55,8 @@ let paddle4Speed = 0;
 let paddle2YPos = playGroundrect.height / 2;
 let ballX = (playGroundrect.right - playGroundrect.left) / 2;
 let ballY = (playGroundrect.bottom - playGroundrect.top) / 2;
-let ballSpeedX = playGroundrect.width / 100;
-let ballSpeedY = playGroundrect.height / 100;
+let ballSpeedX = playGroundrect.width / 200;
+let ballSpeedY = playGroundrect.height / 200;
 let oldBallX = ballX;
 let oldDirctionX = ballX;
 let newBallX = ballX;

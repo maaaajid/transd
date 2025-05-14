@@ -9,7 +9,6 @@ body{
     font-family: 'Press Start 2P', cursive;
     font-weight: 400;
     font-style: normal;
-    overflow: hidden;
     margin: 0;
     padding: 0;
     background-color: black;
@@ -28,53 +27,57 @@ body{
     top: 5dvh;
     left: 5dvw;
     background-color:black;
-    display: none;
+    display: flex;
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
 }
 
 .v1 {
-    min-width: 200px;
-    width: 35dvw;
-    height: 25dvh;
-    background-color: #007074;
-    border: 0.5dvw solid #5F0F40;
-    border-radius: 1dvw;
-    font-size: 2dvw;
     color: white;
 }
 
 .tournment {
-    min-width: 200px;
-    width: 35dvw;
-    height: 25dvh;
-    background-color:#007074;
-    border: 0.5dvw solid #5F0F40;
-    border-radius: 1dvw;
-    font-size: 2dvw;
-    color: white;
+    color: white; 
 }
-.AI {
+
+.buttonCard {
+    margin: 0;
     min-width: 200px;
     width: 35dvw;
-    height: 25dvh;
-    background-color:#007074;
+    height: 20dvh;
     border: 0.5dvw solid #5F0F40;
     border-radius: 1dvw;
     font-size: 2dvw;
-    color: white;
+    background-color: #007074;
+    position: relative;
+}
+
+.buttonCard:hover::after{
+    filter: blur(30px);
+}
+.buttonCard::after{
+    
+    content: '';
+    position: absolute;
+    width: 100.6%;
+    height: 101%;
+    inset:0; 
+    background: conic-gradient(from 0deg at center, #be1099, #4d0199, #6300c6, #be1099);
+    z-index: -1;
+    /* padding: 10px; */
+    border-radius: inherit;
+    transition: filter 350ms ease-in-out;
+    /* transition: width 350ms ease-in-out; */
 }
 
 .V2{
-    min-width: 200px;
-    width: 35dvw;
-    height: 25dvh;
-    background-color:#007074;
-    border: 0.5dvw solid #5F0F40;
-    border-radius: 1dvw;
-    font-size: 2dvw;
     color: white;
+}
+
+.AI{
+    background-image: url("../gameAi3.png");
+    background-size: 100% 100%;
 }
 
 button {
@@ -96,7 +99,7 @@ button {
 
 .board {
     min-width: 250px;
-    width: 20%;
+    width: 20dvw;
     margin: 0;
     border-radius: 15px;
     /* border: 10px solid #09122C; */
@@ -112,7 +115,7 @@ button {
 .board1{
     min-width: 400px;
     height: 45%;
-    font-size: 1.5dvw;
+    font-size: clamp(1rem,  2vw, 3rem); 
     color: white;
     position: relative;
 }
@@ -185,8 +188,8 @@ button {
     position: absolute;
     justify-content: center;
     display: block;
-    width: 70%;
-    aspect-ratio: 16/8; 
+    width: 70dvw;
+    height: 70dvh;
     background-color: #5F0F40;
     top: 250px;
     left: 15%;
@@ -222,7 +225,7 @@ button {
     transform: translateY(-50%);
     width: 1%;
     border-radius: 5px;
-    height: 30%;
+    height: 15%;
 }
 
 .padle2{
@@ -234,7 +237,7 @@ button {
     transform: translateY(-50%);
     width: 1%;
     border-radius: 5px;
-    height: 30%;
+    height: 15%;
 }
 
 .padle3{
@@ -246,8 +249,7 @@ button {
     transform: translateY(-50%);
     width: 1.2%;
     border-radius: 5px;
-    height: 30%;
-    /* display: none; */
+    height: 15%;
 }
 
 .padle4{
@@ -259,14 +261,13 @@ button {
     transform: translateY(-50%);
     width: 1.2%;
     border-radius: 5px;
-    height: 30%;
-    /* display: none ; */
+    height: 15%;
 }
 
 .ball{
     --x: 50;
     --y: 50;
-    z-index: 2;
+    z-index: 0;
     height: 4%;
     aspect-ratio: 1/1;
     background: #bce7c0;
@@ -403,12 +404,12 @@ button {
     min-width: 200px;
     z-index: 2;
     position: relative;
-    border: 0.5dvw solid #007074;
+    border: 10px solid #007074;
     border-radius: 1dvw;
-    width: 30dvw;
+    width: 40dvw;
     height: 45dvh;
     top: 36dvh;
-    left: 35dvw;
+    left: 30dvw;
     background-color: black;
     display: none;
     flex-direction: column;
@@ -431,12 +432,11 @@ button {
 
 .inputName{
     min-width: 200px;
-    width: 20dvw;
+    width: 25dvw;
     height: 7dvh;
-    border: 0.5dvw solid #5F0F40;
+    border:  5px solid #5F0F40;
     border-radius: 0.3dvw;
-    /* font-size: clamp(0.1rem,  0.5vw, 1rem); */
-    font-size: 1.5rem;
+    font-size: clamp(0.8rem,  1vw, 1.5rem);
     left: 5px;  
 }
 
@@ -454,7 +454,7 @@ input {
     width: 15dvw;
     height: 6dvh;
     background-color:#007074;
-    border: 0.2dvw solid #5F0F40;
+    border: 5px solid #5F0F40;
     border-radius: 1dvw;
     font-size: clamp(0.3rem,  1vw, 1.5rem);
 }
@@ -463,12 +463,12 @@ input {
     min-width: 300px;
     z-index: 2;
     position: relative;
-    border: 0.5dvw solid #007074;
+    border: 10px solid #007074;
     border-radius: 1dvw;
-    width: 30dvw;
+    width: 40dvw;
     height: 70dvh;
     top: 15dvh;
-    left: 35dvw;
+    left: 30dvw;
     background-color: black;
     display: none;
     flex-direction: column;
@@ -489,47 +489,25 @@ input {
     font-size: clamp(0.2rem,  0.4vw, 0.8rem);
 }
 
-.inputName2{
+/* .inputName{
     min-width: 200px;
-    width: 20dvw;
+    width: 30dvw;
     height: 7dvh;
-    border: 0.5dvw solid #5F0F40;
+    border: 5px solid #5F0F40;
     border-radius: 0.3dvw;
-    /* font-size: clamp(0.1rem,  0.5vw, 1rem); */
+    /* font-size: clamp(0.1rem,  0.5vw, 1rem); *//*
     font-size: 0.8rem;
     left: 5px;  
-}
-
-.inputName3{
-    min-width: 200px;
-    width: 20dvw;
-    height: 7dvh;
-    border: 0.5dvw solid #5F0F40;
-    border-radius: 0.3dvw;
-    /* font-size: clamp(0.1rem,  0.5vw, 1rem); */
-    font-size: 0.8rem;
-    left: 5px;  
-}
-
-.inputName4{
-    min-width: 200px;
-    width: 20dvw;
-    height: 7dvh;
-    border: 0.5dvw solid #5F0F40;
-    border-radius: 0.3dvw;
-    /* font-size: clamp(0.1rem,  0.5vw, 1rem); */
-    font-size: 0.8rem;
-    left: 5px;  
-}
+} */
 
 .submitUsers{
     min-width: 100px;
     width: 15dvw;
     height: 6dvh;
     background-color:#007074;
-    border: 0.2dvw solid #5F0F40;
+    border: 5px solid #5F0F40;
     border-radius: 1dvw;
-    font-size: clamp(0.3rem,  1vw, 1.5rem);
+    font-size: clamp(0.8rem,  1vw, 1.5rem);
 }
 
 .tournament-board {
@@ -647,15 +625,20 @@ input {
         left: 5%;
     }
     .games {
+        min-width: 400px;
         flex-direction: column;
     }
     .v1 {
-        width: 90%;
-        left : 5%;
+        width: 80dvw;
     }
     .tournment {
-        width: 90%;
-        left : 5%;
+        width: 80dvw;
+    }
+    .V2 {
+        width: 80dvw;
+    }
+    .AI {
+        width: 80dvw;
     }
     .frame2 {
         width: 90%;
@@ -668,6 +651,20 @@ input {
         width: 90%;
         left: 5%
     }
+    .userName{
+        width: 80dvw;
+        left: 10dvw;
+    }
+    /* .inputName{
+        width: 70%;
+    } */
+    .tournmentNames{
+        width: 80dvw;
+        left: 10dvw;
+    }
+    .inputName{
+        width: 70%;
+    }
 }
 
 
@@ -677,6 +674,8 @@ input {
 {
     .games {
         left: 0;
+        width: 100dvw;
+        height: 100dvh;
     }
     .playground {
         width: 100%;
@@ -702,6 +701,30 @@ input {
     .board2 {
         height: 30%;
         text-align: right;
+    }
+    .v1 {
+        width: 100%;
+    }
+    .tournment {
+        width: 100%;
+    }
+    .V2 {
+        width: 100%;
+    }
+    .AI {
+        width: 100%;
+        left: 0;
+    }
+    .tournmentNames{
+        width: 90dvw;
+        left: 5dvw;
+    }
+    .inputName{
+        width: 90%;
+    }
+    .userName{
+        width: 90dvw;
+        left: 5dvw;
     }
 
 }

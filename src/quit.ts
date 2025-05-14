@@ -2,7 +2,7 @@ import { player1Name, player2Name, tempName , startTournment, tournBoard} from "
 import { gamesboard, winnerBoard, button1v1 , tournment, aiButton } from "./main.js";
 import { game1v1 } from "./game1v1.js";
 import { startAiGame } from "./ai.js";
-import { paddel3, paddel4 } from "./game2v2.js";
+import { paddel3, paddel4 } from "./game.js";
 // import { paddel3 , paddel4 } from "./game.js";
 
 

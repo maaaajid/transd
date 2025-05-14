@@ -1,11 +1,13 @@
 import { players , gameRunning , startGame, games} from "./game.js";
-import { winnerBoard, gamesboard , resetMatch , aiRematch, winnerText} from "./main.js";
+import { winnerBoard, gamesboard , resetMatch , aiRematch, winnerText, getNewMatch, sendWinOrLose} from "./main.js";
 import { player2Name , player1Name, reTournment} from "./tournment.js";
 import { reMatch2v2 } from "./game2v2.js";
 
+let matchUID: string;
 
 export async function    startAiGame()
 {
+    matchUID = await getNewMatch(3);
     games.gametype = 'AI';
     players.player1 = 0;
     players.player2 = 0;
@@ -20,10 +22,14 @@ async function    aiGame(event: KeyboardEvent){
     let res: number = 0;
     if (!gameRunning)
         res = await startGame(event);
-    if (res === 3)
+    if (res === 3){
         winnerText.innerText = player1Name.innerText + " win";
-    else if (res === 2) 
+        await sendWinOrLose(matchUID, true);
+    }
+    else if (res === 2) {
         winnerText.innerText = player2Name.innerText + " win";
+        await sendWinOrLose(matchUID, false);
+    }
     if (res === 2 || res === 3){
         res = 0;
         reTournment.style.display = 'none';
