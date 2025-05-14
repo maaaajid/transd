@@ -14,14 +14,22 @@ import { reMatch2v2 } from "./game2v2.js";
 let matchUID;
 export function startAiGame() {
     return __awaiter(this, void 0, void 0, function* () {
-        matchUID = yield getNewMatch(3);
-        games.gametype = 'AI';
-        players.player1 = 0;
-        players.player2 = 0;
-        player2Name.innerText = 'ROBOTOMAS';
-        winnerBoard.style.display = 'none';
-        gamesboard.style.display = 'none';
-        document.addEventListener('keyup', aiGame);
+        try {
+            matchUID = yield getNewMatch(3);
+            games.gametype = 'AI';
+            players.player1 = 0;
+            players.player2 = 0;
+            player2Name.innerText = 'ROBOTOMAS';
+            winnerBoard.style.display = 'none';
+            gamesboard.style.display = 'none';
+            document.addEventListener('keyup', aiGame);
+        }
+        catch (e) {
+            if (e instanceof Error) {
+                console.log(e.message);
+                // TODO:print error with toast
+            }
+        }
     });
 }
 function aiGame(event) {

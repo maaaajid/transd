@@ -7,20 +7,30 @@ export const reMatch2v2 = document.getElementById('reset2v2') as HTMLButtonEleme
 let matchUID:string;
 
 export async function    startGame2v2(){
-    matchUID = await getNewMatch(2);
-    paddel3.style.display = 'flex';
-    paddel4.style.display = 'flex';
-    games.gametype = '2v2';
-    player2Name.innerText = tempName.p1;
-    gamesboard.style.display = 'none';
-    winnerBoard.style.display = 'none';
-    if (tempName.p2 === ''  || tempName.p3 === '' || tempName.p4 === '')
-        await getParticepantNames();
-    if (tempName.p2 != '' &&  tempName.p3 != '' && tempName.p4 != ''){ 
+    try{
+
+        matchUID = await getNewMatch(2);
+        paddel3.style.display = 'flex';
+        paddel4.style.display = 'flex';
+        games.gametype = '2v2';
+        player2Name.innerText = tempName.p1;
+        gamesboard.style.display = 'none';
+        winnerBoard.style.display = 'none';
+        if (tempName.p2 === ''  || tempName.p3 === '' || tempName.p4 === '')
+            await getParticepantNames();
+        if (tempName.p2 != '' &&  tempName.p3 != '' && tempName.p4 != ''){ 
             
-        player1Name.innerText = tempName.p1 + '\n\n' + tempName.p3;
-        player2Name.innerText = tempName.p2 + '\n\n' + tempName.p4;
-        document.addEventListener('keyup',  game2v2);
+            player1Name.innerText = tempName.p1 + '\n\n' + tempName.p3;
+            player2Name.innerText = tempName.p2 + '\n\n' + tempName.p4;
+            document.addEventListener('keyup',  game2v2);
+        }
+    }catch(e:unknown)
+    {
+        if (e instanceof Error)
+        {
+            console.log(e.message);
+                // TODO:print error with toast
+        }
     }
 }
 

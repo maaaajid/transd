@@ -40,24 +40,33 @@ reTournment.addEventListener('click', startTournment);
 
 export async function    startTournment()
 {
-    matchUID = await getNewMatch(4);
-    games.gametype = 'tournment';
-    player1Name.innerText = tempName.p1;
-    tempName.winners[0] = '', tempName.winners[1] = '', tempName.winners[2] = '';
-    tb5.innerText = '', tb6.innerText = '', tb7.innerText = '';
-    tb1.style.opacity = '1', tb2.style.opacity = '1', tb3.style.opacity = '1',
-    tb4.style.opacity = '1', tb5.style.opacity = '1', tb6.style.opacity = '1', tb7.style.opacity = '1', 
-    gamesboard.style.display = 'none';
-    winnerBoard.style.display = 'none';
-    tournBoard.style.display = 'none';
-    
-    if (tempName.p2 === ''  || tempName.p3 === '' || tempName.p4 === '')
-        await getParticepantNames();
-    if (tempName.p2 != '' &&  tempName.p3 != '' && tempName.p4 != ''){
+    try{
+        matchUID = await getNewMatch(4);
+        games.gametype = 'tournment';
         player1Name.innerText = tempName.p1;
-        player2Name.innerText = tempName.p2;
-        tournBoard.style.display = 'flex';
-        document.addEventListener('keyup',  firstRound);
+        tempName.winners[0] = '', tempName.winners[1] = '', tempName.winners[2] = '';
+        tb5.innerText = '', tb6.innerText = '', tb7.innerText = '';
+        tb1.style.opacity = '1', tb2.style.opacity = '1', tb3.style.opacity = '1',
+        tb4.style.opacity = '1', tb5.style.opacity = '1', tb6.style.opacity = '1', tb7.style.opacity = '1', 
+        gamesboard.style.display = 'none';
+        winnerBoard.style.display = 'none';
+        tournBoard.style.display = 'none';
+        
+        if (tempName.p2 === ''  || tempName.p3 === '' || tempName.p4 === '')
+            await getParticepantNames();
+        if (tempName.p2 != '' &&  tempName.p3 != '' && tempName.p4 != ''){
+            player1Name.innerText = tempName.p1;
+            player2Name.innerText = tempName.p2;
+            tournBoard.style.display = 'flex';
+            document.addEventListener('keyup',  firstRound);
+        }
+    }catch(e:unknown)
+    {
+        if (e instanceof Error)
+        {
+            console.log(e.message);
+                // TODO:print error with toast
+        }
     }
 }
 
