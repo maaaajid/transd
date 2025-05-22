@@ -29,32 +29,32 @@ window.addEventListener('resize', resizeGame);
 gameMenu();
 
 
-export async  function getNewMatch(type:number) :Promise<string>{
-    let res = await fetch(
-        `https://transcendence.fr/api/match/create?match_type=${type}`, {method:"POST",body:new FormData()});
-        if (!res.ok){
-            throw Error(await res.text());
-        }
-        let uid = await res.text();
-        console.log(uid);
-        return (uid);
-}
+// export async  function getNewMatch(type:number) :Promise<string>{
+//     let res = await fetch(
+//         `https://transcendence.fr/api/match/create?match_type=${type}`, {method:"POST",body:new FormData()});
+//         if (!res.ok){
+//             throw Error(await res.text());
+//         }
+//         let uid = await res.text();
+//         console.log(uid);
+//         return (uid);
+// }
     
-export async function sendWinOrLose(uid:string, win:boolean) :Promise<void>{
-    let status = "https://transcendence.fr/api/match/win";
-    if (!win)
-        status = "https://transcendence.fr/api/match/lose";
-    let theForm = new FormData();
-    theForm.append("uid", uid)
-    try{
-        let res = await fetch(status, {method:"POST", body:theForm});
-        if (!res.ok)
-            throw Error(await res.text());
-    }catch(e){
-        console.log(e);
-    }
-    return;
-}
+// export async function sendWinOrLose(uid:string, win:boolean) :Promise<void>{
+//     let status = "https://transcendence.fr/api/match/win";
+//     if (!win)
+//         status = "https://transcendence.fr/api/match/lose";
+//     let theForm = new FormData();
+//     theForm.append("uid", uid)
+//     try{
+//         let res = await fetch(status, {method:"POST", body:theForm});
+//         if (!res.ok)
+//             throw Error(await res.text());
+//     }catch(e){
+//         console.log(e);
+//     }
+//     return;
+// }
 
 
 export function    gameMenu()

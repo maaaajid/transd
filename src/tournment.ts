@@ -1,4 +1,4 @@
-import { gamesboard, winnerBoard, aiRematch , winnerText, resetMatch, getNewMatch, sendWinOrLose} from "./main.js";
+import { gamesboard, winnerBoard, aiRematch , winnerText, resetMatch} from "./main.js";
 import { gameRunning, startGame , games } from "./game.js";
 
 export const tournBoard = document.getElementById('tournamentBoard') as HTMLDivElement;
@@ -34,14 +34,14 @@ export const tempName: {
   winners: []
 };
 
-let matchUID:string;
+// let matchUID:string;
 
 reTournment.addEventListener('click', startTournment);
 
 export async function    startTournment()
 {
-    try{
-        matchUID = await getNewMatch(4);
+    // try{
+    //     matchUID = await getNewMatch(4);
         games.gametype = 'tournment';
         player1Name.innerText = tempName.p1;
         tempName.winners[0] = '', tempName.winners[1] = '', tempName.winners[2] = '';
@@ -60,14 +60,14 @@ export async function    startTournment()
             tournBoard.style.display = 'flex';
             document.addEventListener('keyup',  firstRound);
         }
-    }catch(e:unknown)
-    {
-        if (e instanceof Error)
-        {
-            console.log(e.message);
-                // TODO:print error with toast
-        }
-    }
+    // }catch(e:unknown)
+    // {
+    //     if (e instanceof Error)
+    //     {
+    //         console.log(e.message);
+    //             // TODO:print error with toast
+    //     }
+    // }
 }
 
 async function firstRound(event: KeyboardEvent) {
@@ -119,12 +119,12 @@ async function finnalRound(event: KeyboardEvent) {
         if (res === 3){
             tempName.winners[2]= tempName.winners[0], tb5.style.opacity = '0.3'
             , tb4.style.opacity = '0.3', tb3.style.opacity = '0.3';
-            await sendWinOrLose(matchUID, true);
+            // await sendWinOrLose(matchUID, true);
         }
         else if (res === 2){
             tempName.winners[2] = tempName.winners[1], tb6.style.opacity = '0.3'
             , tb2.style.opacity = '0.3', tb1.style.opacity = '0.3';
-            await sendWinOrLose(matchUID, false);
+            // await sendWinOrLose(matchUID, false);
         }
     }
     if (tempName.winners[2])

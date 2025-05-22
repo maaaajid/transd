@@ -20,7 +20,7 @@ body{
     min-width: 400px;
     z-index: 2;
     position: relative;
-    border: 1dvw solid #5F0F40;
+    border: 1dvw solid white;
     border-radius: 2dvw;
     width: 90dvw;
     height: 90dvh;
@@ -46,10 +46,10 @@ body{
     min-width: 200px;
     width: 35dvw;
     height: 20dvh;
-    border: 0.5dvw solid #5F0F40;
+    border: 0.5dvw solid white;
     border-radius: 1dvw;
     font-size: 2dvw;
-    background-color: #007074;
+    background-color: black;
     position: relative;
 }
 
@@ -76,7 +76,7 @@ body{
 }
 
 .AI{
-    background-image: url("../gameAi3.png");
+    background-image: url("../robot.png");
     background-size: 100% 100%;
 }
 

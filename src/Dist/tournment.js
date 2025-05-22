@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { gamesboard, winnerBoard, aiRematch, winnerText, resetMatch, getNewMatch, sendWinOrLose } from "./main.js";
+import { gamesboard, winnerBoard, aiRematch, winnerText, resetMatch } from "./main.js";
 import { gameRunning, startGame, games } from "./game.js";
 export const tournBoard = document.getElementById('tournamentBoard');
 export const player1Name = document.getElementById('player1name');
@@ -33,36 +33,37 @@ export const tempName = {
     p4: '',
     winners: []
 };
-let matchUID;
+// let matchUID:string;
 reTournment.addEventListener('click', startTournment);
 export function startTournment() {
     return __awaiter(this, void 0, void 0, function* () {
-        try {
-            matchUID = yield getNewMatch(4);
-            games.gametype = 'tournment';
+        // try{
+        //     matchUID = await getNewMatch(4);
+        games.gametype = 'tournment';
+        player1Name.innerText = tempName.p1;
+        tempName.winners[0] = '', tempName.winners[1] = '', tempName.winners[2] = '';
+        tb5.innerText = '', tb6.innerText = '', tb7.innerText = '';
+        tb1.style.opacity = '1', tb2.style.opacity = '1', tb3.style.opacity = '1',
+            tb4.style.opacity = '1', tb5.style.opacity = '1', tb6.style.opacity = '1', tb7.style.opacity = '1',
+            gamesboard.style.display = 'none';
+        winnerBoard.style.display = 'none';
+        tournBoard.style.display = 'none';
+        if (tempName.p2 === '' || tempName.p3 === '' || tempName.p4 === '')
+            yield getParticepantNames();
+        if (tempName.p2 != '' && tempName.p3 != '' && tempName.p4 != '') {
             player1Name.innerText = tempName.p1;
-            tempName.winners[0] = '', tempName.winners[1] = '', tempName.winners[2] = '';
-            tb5.innerText = '', tb6.innerText = '', tb7.innerText = '';
-            tb1.style.opacity = '1', tb2.style.opacity = '1', tb3.style.opacity = '1',
-                tb4.style.opacity = '1', tb5.style.opacity = '1', tb6.style.opacity = '1', tb7.style.opacity = '1',
-                gamesboard.style.display = 'none';
-            winnerBoard.style.display = 'none';
-            tournBoard.style.display = 'none';
-            if (tempName.p2 === '' || tempName.p3 === '' || tempName.p4 === '')
-                yield getParticepantNames();
-            if (tempName.p2 != '' && tempName.p3 != '' && tempName.p4 != '') {
-                player1Name.innerText = tempName.p1;
-                player2Name.innerText = tempName.p2;
-                tournBoard.style.display = 'flex';
-                document.addEventListener('keyup', firstRound);
-            }
+            player2Name.innerText = tempName.p2;
+            tournBoard.style.display = 'flex';
+            document.addEventListener('keyup', firstRound);
         }
-        catch (e) {
-            if (e instanceof Error) {
-                // console.log(e.message);
-                // TODO:print error with toast
-            }
-        }
+        // }catch(e:unknown)
+        // {
+        //     if (e instanceof Error)
+        //     {
+        //         console.log(e.message);
+        //             // TODO:print error with toast
+        //     }
+        // }
     });
 }
 function firstRound(event) {
@@ -116,12 +117,12 @@ function finnalRound(event) {
             if (res === 3) {
                 tempName.winners[2] = tempName.winners[0], tb5.style.opacity = '0.3'
                     , tb4.style.opacity = '0.3', tb3.style.opacity = '0.3';
-                yield sendWinOrLose(matchUID, true);
+                // await sendWinOrLose(matchUID, true);
             }
             else if (res === 2) {
                 tempName.winners[2] = tempName.winners[1], tb6.style.opacity = '0.3'
                     , tb2.style.opacity = '0.3', tb1.style.opacity = '0.3';
-                yield sendWinOrLose(matchUID, false);
+                // await sendWinOrLose(matchUID, false);
             }
         }
         if (tempName.winners[2]) {

@@ -1,5 +1,5 @@
 import { players , gameRunning , startGame, games} from "./game.js";
-import { winnerBoard, gamesboard , resetMatch, aiRematch , winnerText, getNewMatch, sendWinOrLose} from "./main.js";
+import { winnerBoard, gamesboard , resetMatch, aiRematch , winnerText} from "./main.js";
 import { player2Name , player1Name, reTournment} from "./tournment.js";
 
 
@@ -7,12 +7,12 @@ const error =  document.getElementById('error') as HTMLHeadingElement;
 const inputName = document.getElementById('inputName') as HTMLInputElement;
 const username = document.getElementById('userName') as HTMLDivElement;
 const submit = document.getElementById('submit') as HTMLButtonElement 
-let matchUid:string;
+// let matchUid:string;
 
 export async function    game1v1()
 {
-    try{
-        matchUid = await getNewMatch(1);
+    // try{
+    //     matchUid = await getNewMatch(1);
         games.gametype = '1v1';
         players.player1 = 0;
         players.player2 = 0;
@@ -21,14 +21,14 @@ export async function    game1v1()
         winnerBoard.style.display = 'none';
         gamesboard.style.display = 'none';
         document.addEventListener('keyup', onevsone);
-    }catch(e:unknown)
-    {
-        if (e instanceof Error)
-        {
-            console.log(e.message);
-                // TODO:print error with toast
-        }
-    }
+    // }catch(e:unknown)
+    // {
+    //     if (e instanceof Error)
+    //     {
+    //         console.log(e.message);
+    //             // TODO:print error with toast
+    //     }
+    // }
 }
 
 
@@ -39,11 +39,11 @@ async function    onevsone(event: KeyboardEvent){
         res = await startGame(event);
     if (res === 3){
         winnerText.innerText = player1Name.innerText + " win";
-        await sendWinOrLose(matchUid, true);
+        // await sendWinOrLose(matchUid, true);
     }
     else if (res === 2){
         winnerText.innerText = player2Name.innerText + " win";
-        await sendWinOrLose(matchUid, false)
+        // await sendWinOrLose(matchUid, false)
     } 
     
     if (res === 2 || res === 3){
